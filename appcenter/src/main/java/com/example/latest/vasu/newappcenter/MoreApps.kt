@@ -2,11 +2,14 @@ package com.example.latest.vasu.newappcenter
 
 import android.app.Activity
 import android.content.Intent
+import androidx.annotation.DrawableRes
 import androidx.annotation.NonNull
 import java.io.Serializable
 
 internal const val ARG_THEME_COLOR = "theme_color"
 internal const val ARG_THEME_TEXT_COLOR = "text_color"
+internal const val ARG_BACK_ICON = "back_icon"
+internal const val ARG_SHARE_ICON = "share_icon"
 internal const val ARG_SHARE_MSG = "share_msg"
 internal const val ARG_APP_PACKAGE_NAME = "app_package_name"
 
@@ -37,6 +40,8 @@ class Request(private val mContext: Activity) : Serializable {
     private var mShareMsg: String = ""
     private var mThemeColor: Int = 0
     private var mTextColor: Int = 0
+    private var mBackIcon: Int = 0
+    private var mShareIcon: Int = 0
 
     @JvmName("setAppPackageName")
     @NonNull
@@ -62,6 +67,18 @@ class Request(private val mContext: Activity) : Serializable {
     fun setTextColor(fColor: Int) = this@Request.apply {
         this.mTextColor = fColor
     }
+
+    @JvmName("setBackIcon")
+    @NonNull
+    fun setBackIcon(@DrawableRes id: Int) = this@Request.apply {
+        this.mBackIcon = id
+    }
+
+    @JvmName("setShareIcon")
+    @NonNull
+    fun setShareIcon(@DrawableRes id: Int) = this@Request.apply {
+        this.mShareIcon = id
+    }
     //</editor-fold>
 
     //<editor-fold desc="Launch More Apps Screen">
@@ -73,6 +90,8 @@ class Request(private val mContext: Activity) : Serializable {
         val moreAppIntent = Intent(mContext, MoreAppsActivity::class.java)
             .putExtra(ARG_THEME_COLOR, themeColorConvert)
             .putExtra(ARG_THEME_TEXT_COLOR, textColorConvert)
+            .putExtra(ARG_BACK_ICON, mBackIcon)
+            .putExtra(ARG_SHARE_ICON, mShareIcon)
             .putExtra(ARG_SHARE_MSG, mShareMsg)
             .putExtra(ARG_APP_PACKAGE_NAME, mAppPackageName)
 

@@ -3,8 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/AppCenter.iml" filepath="$PROJECT_DIR$/.idea/modules/AppCenter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adshelper/AppCenter.adshelper.iml" filepath="$PROJECT_DIR$/.idea/modules/adshelper/AppCenter.adshelper.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AppCenter.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AppCenter.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/newAppCenter/AppCenter.appcenter.iml" filepath="$PROJECT_DIR$/.idea/modules/newAppCenter/AppCenter.appcenter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/base/AppCenter.base.iml" filepath="$PROJECT_DIR$/.idea/modules/base/AppCenter.base.iml" />
     </modules>
   </component>
 </project>

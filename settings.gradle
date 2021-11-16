@@ -1,3 +1,5 @@
 rootProject.name='AppCenter'
 include ':app'
 include ':appcenter'
+include ':base'
+include ':adshelper'

@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.app.base.BaseViewHolder
 import com.example.latest.vasu.newappcenter.R
 import com.example.latest.vasu.newappcenter.databinding.ListItemOtherAppsBinding
 import com.example.latest.vasu.newappcenter.model.SubCategory
 import com.example.latest.vasu.newappcenter.themeColor
 import com.example.latest.vasu.newappcenter.utils.rateApp
-import com.example.latest.vasu.newappcenter.utils.roundToHalf
+import com.example.app.base.utils.roundToHalf
 import com.example.latest.vasu.newappcenter.utils.shapeCategorySelectedDrawable
 
 
@@ -20,16 +21,15 @@ open class OtherAppsAdapter(
     private val mContext: Context,
     private val mApps: ArrayList<SubCategory>,
     val height: Int
-) :
-    RecyclerView.Adapter<OtherAppsAdapter.MyViewHolder>() {
+) : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     // variable to track event time
     var mLastClickTime: Long = 0
     private val mMinDuration = 1500
 
-    inner class MyViewHolder(val fBinding: ListItemOtherAppsBinding) : RecyclerView.ViewHolder(fBinding.root)
+    inner class MyViewHolder(fBinding: ListItemOtherAppsBinding) : BaseViewHolder<ListItemOtherAppsBinding>(fBinding)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         return MyViewHolder(
             ListItemOtherAppsBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -43,9 +43,9 @@ open class OtherAppsAdapter(
         return mApps.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
 
-        with(holder) {
+        with(holder as MyViewHolder) {
             with(fBinding) {
                 with(mApps[position]) {
                     listAppsIvThumb.layoutParams.width = height

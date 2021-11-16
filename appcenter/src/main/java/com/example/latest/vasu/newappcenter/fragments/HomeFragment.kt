@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.latest.vasu.newappcenter.adapter.TopThreeAppsAdapter
 import com.example.latest.vasu.newappcenter.adapter.TopsSliderAppsExample
-import com.example.latest.vasu.newappcenter.base.BaseBindingFragment
 import com.example.latest.vasu.newappcenter.databinding.FragmentHomeBinding
 import com.example.latest.vasu.newappcenter.model.Home
 import com.example.latest.vasu.newappcenter.model.SubCategory
 import com.example.latest.vasu.newappcenter.themeColor
 import com.example.latest.vasu.newappcenter.utils.rateApp
+import com.example.app.base.BaseBindingFragment
 
 class HomeFragment: BaseBindingFragment<FragmentHomeBinding>() {
 

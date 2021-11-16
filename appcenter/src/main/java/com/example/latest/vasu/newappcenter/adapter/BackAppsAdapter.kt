@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.app.base.BaseAdapter
+import com.example.app.base.BaseViewHolder
+import com.example.app.base.utils.isValidContextForGlide
 import com.example.latest.vasu.newappcenter.R
 import com.example.latest.vasu.newappcenter.databinding.ListItemBackAppsBinding
 import com.example.latest.vasu.newappcenter.model.Data
@@ -13,16 +16,18 @@ import com.example.latest.vasu.newappcenter.themeColor
 import com.example.latest.vasu.newappcenter.utils.*
 
 
-open class BackAppsAdapter(private val mContext: Context, private val mApps: MutableList<Data>) :
-    RecyclerView.Adapter<BackAppsAdapter.MyViewHolder>() {
+open class BackAppsAdapter(
+    private val mContext: Context,
+    private val mApps: MutableList<Data>
+) : BaseAdapter<Data>(mApps) {
 
     // variable to track event time
     var mLastClickTime: Long = 0
     private val mMinDuration = 1500
 
-    inner class MyViewHolder(val fBinding: ListItemBackAppsBinding) : RecyclerView.ViewHolder(fBinding.root)
+    inner class MyViewHolder(fBinding: ListItemBackAppsBinding) : BaseViewHolder<ListItemBackAppsBinding>(fBinding)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         return MyViewHolder(
             ListItemBackAppsBinding.inflate(
                 LayoutInflater.from(mContext),
@@ -32,14 +37,10 @@ open class BackAppsAdapter(private val mContext: Context, private val mApps: Mut
         )
     }
 
-    override fun getItemCount(): Int {
-        return mApps.size
-    }
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindHolder(holder: BaseViewHolder<*>, position: Int) {
         if (mContext.isValidContextForGlide) {
 
-            with(holder) {
+            with(holder as MyViewHolder) {
                 with(fBinding) {
                     with(mApps[position]) {
                         Glide.with(itemView)

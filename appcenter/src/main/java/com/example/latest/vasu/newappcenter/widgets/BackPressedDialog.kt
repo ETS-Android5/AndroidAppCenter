@@ -10,8 +10,7 @@ import com.example.latest.vasu.newappcenter.adapter.BackAppsAdapter
 import com.example.latest.vasu.newappcenter.databinding.DialogLayoutBackpressedBinding
 import com.example.latest.vasu.newappcenter.model.Data
 import com.example.latest.vasu.newappcenter.themeColor
-import com.example.latest.vasu.newappcenter.utils.displayHeight
-import com.example.latest.vasu.newappcenter.utils.displayWidth
+import com.example.app.base.utils.*
 
 class BackPressedDialog(
         private val activity: Activity,

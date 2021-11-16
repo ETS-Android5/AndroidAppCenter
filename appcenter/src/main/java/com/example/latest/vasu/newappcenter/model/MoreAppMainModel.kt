@@ -27,7 +27,7 @@ data class MoreAppMainModel(
     val message: String,
     @SerializedName("more_apps")
     @Expose
-    val moreApps: ArrayList<MoreApps>,
+    val moreApps: ArrayList<MoreAppsModel>,
     @SerializedName("native_add")
     @Expose
     val nativeAdd: NativeAdd,
@@ -125,7 +125,7 @@ data class Home(
 
 @Keep
 @Parcelize
-data class MoreApps(
+data class MoreAppsModel(
     @SerializedName("id")
     @Expose var id: Int,
     @SerializedName("position")

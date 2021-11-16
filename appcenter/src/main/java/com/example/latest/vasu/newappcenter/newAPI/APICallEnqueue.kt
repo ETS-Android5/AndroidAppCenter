@@ -5,7 +5,7 @@ import com.example.latest.vasu.newappcenter.model.MoreAppMainModel
 import com.example.latest.vasu.newappcenter.newAPI.APIBuilder.getMainBaseUrl
 import com.example.latest.vasu.newappcenter.newAPI.APIBuilder.getMainClient
 import com.example.latest.vasu.newappcenter.utils.PKG_NAME
-import com.example.latest.vasu.newappcenter.utils.isSDKBelow21
+import com.example.app.base.utils.isSDKBelow21
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext

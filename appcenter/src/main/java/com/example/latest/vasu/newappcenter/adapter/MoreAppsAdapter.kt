@@ -7,24 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.app.base.BaseViewHolder
 import com.example.latest.vasu.newappcenter.R
 import com.example.latest.vasu.newappcenter.databinding.ListItemMoreAppsBinding
 import com.example.latest.vasu.newappcenter.model.Data
-import com.example.latest.vasu.newappcenter.utils.isValidContextForGlide
+import com.example.app.base.utils.isValidContextForGlide
 import com.example.latest.vasu.newappcenter.utils.rateApp
 
 
 open class MoreAppsAdapter(private val mContext: Context, private val mApps: ArrayList<Data>) :
-    RecyclerView.Adapter<MoreAppsAdapter.MyViewHolder>() {
+    RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     // variable to track event time
     var mLastClickTime: Long = 0
     private val mMinDuration = 1500
 
-    inner class MyViewHolder(val fBinding: ListItemMoreAppsBinding) :
-        RecyclerView.ViewHolder(fBinding.root)
+    inner class MyViewHolder(fBinding: ListItemMoreAppsBinding) :
+        BaseViewHolder<ListItemMoreAppsBinding>(fBinding)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         return MyViewHolder(
             ListItemMoreAppsBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -38,10 +39,10 @@ open class MoreAppsAdapter(private val mContext: Context, private val mApps: Arr
         return mApps.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         if (mContext.isValidContextForGlide) {
 
-            with(holder) {
+            with(holder as MyViewHolder) {
                 with(fBinding) {
                     with(mApps[position]) {
                         Glide.with(itemView)

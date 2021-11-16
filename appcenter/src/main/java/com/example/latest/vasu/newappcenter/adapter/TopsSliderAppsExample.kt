@@ -12,7 +12,7 @@ import com.example.latest.vasu.newappcenter.R
 import com.example.latest.vasu.newappcenter.autoimageslider.SliderViewAdapter
 import com.example.latest.vasu.newappcenter.databinding.ListItemTopSliderBinding
 import com.example.latest.vasu.newappcenter.model.SubCategory
-import com.example.latest.vasu.newappcenter.utils.isSDKBelow21
+import com.example.app.base.utils.isSDKBelow21
 import com.example.latest.vasu.newappcenter.utils.rateApp
 
 class TopsSliderAppsExample(

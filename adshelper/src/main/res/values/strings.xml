@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
+    <string name="app_name">Common Code</string>
+
+    <!--ToDo: Google Test Ads id-->
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_bannerad_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_interstitialad_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_nativead_id">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="admob_reward_video_id">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="admob_interstitialad_reward_id">ca-app-pub-3940256099942544/5354046379</string>
+
+</resources>

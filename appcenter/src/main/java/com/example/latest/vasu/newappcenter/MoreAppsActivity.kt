@@ -5,7 +5,6 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.os.Build
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -13,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.latest.vasu.newappcenter.adapter.ViewPagerAdapter
-import com.example.latest.vasu.newappcenter.base.BaseBindingActivity
 import com.example.latest.vasu.newappcenter.databinding.ActivityMoreAppsBinding
 import com.example.latest.vasu.newappcenter.fragments.HomeFragment
 import com.example.latest.vasu.newappcenter.fragments.MoreAppFragment
@@ -22,6 +20,8 @@ import com.example.latest.vasu.newappcenter.newAPI.APICallEnqueue.getMoreAppResp
 import com.example.latest.vasu.newappcenter.newAPI.APIResponseListener
 import com.example.latest.vasu.newappcenter.utils.*
 import com.example.latest.vasu.newappcenter.widgets.BackPressedDialog
+import com.example.app.base.BaseBindingActivity
+import com.example.app.base.utils.*
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.*
 
@@ -30,7 +30,7 @@ class MoreAppsActivity : BaseBindingActivity<ActivityMoreAppsBinding>() {
     private var mBackPressedDialog: BackPressedDialog? = null
     private var mIsHomeEnable: Boolean = false
 
-    override fun setBinding(layoutInflater: LayoutInflater): ActivityMoreAppsBinding {
+    override fun setBinding(): ActivityMoreAppsBinding {
         return ActivityMoreAppsBinding.inflate(layoutInflater)
     }
 
@@ -56,6 +56,18 @@ class MoreAppsActivity : BaseBindingActivity<ActivityMoreAppsBinding>() {
         PKG_NAME = intent.getStringExtra(ARG_APP_PACKAGE_NAME) ?: PKG_NAME
 
         Log.e(TAG, "initView: PKG_NAME::$PKG_NAME")
+
+        intent.getIntExtra(ARG_SHARE_ICON, 0).let {
+            if (it != 0) {
+                mBinding.maIvShare.setImageDrawable(mActivity.getDrawableRes(it))
+            }
+        }
+
+        intent.getIntExtra(ARG_BACK_ICON, 0).let {
+            if (it != 0) {
+                mBinding.maIvBack.setImageDrawable(mActivity.getDrawableRes(it))
+            }
+        }
 
 
         themeColor = try {

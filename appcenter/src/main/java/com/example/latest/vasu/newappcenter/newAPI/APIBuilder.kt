@@ -3,7 +3,7 @@ package com.example.latest.vasu.newappcenter.newAPI
 import android.content.Context
 import android.util.Base64
 import com.example.latest.vasu.newappcenter.R
-import com.example.latest.vasu.newappcenter.utils.getStringRes
+import com.example.app.base.utils.getStringRes
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.*

@@ -9,26 +9,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.example.app.base.BaseViewHolder
 import com.example.latest.vasu.newappcenter.R
 import com.example.latest.vasu.newappcenter.databinding.ListItmeTopThreeAppsBinding
 import com.example.latest.vasu.newappcenter.model.Home
 import com.example.latest.vasu.newappcenter.themeColor
-import com.example.latest.vasu.newappcenter.utils.gone
+import com.example.app.base.utils.gone
 import com.example.latest.vasu.newappcenter.utils.rateApp
 import com.example.latest.vasu.newappcenter.utils.shapeCategorySelectedDrawable
 
 
 open class TopThreeAppsAdapter(
         private val mContext: Context, private val homeApps: ArrayList<Home>, val onPostExecute: OnPostExecute
-) : RecyclerView.Adapter<TopThreeAppsAdapter.MyViewHolder>() {
+) : RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     // variable to track event time
     var mLastClickTime: Long = 0
     private val mMinDuration = 1500
 
-    inner class MyViewHolder(val fBinding: ListItmeTopThreeAppsBinding) : RecyclerView.ViewHolder(fBinding.root)
+    inner class MyViewHolder(fBinding: ListItmeTopThreeAppsBinding) : BaseViewHolder<ListItmeTopThreeAppsBinding>(fBinding)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
 
         return MyViewHolder(
                 ListItmeTopThreeAppsBinding.inflate(
@@ -41,9 +42,9 @@ open class TopThreeAppsAdapter(
         return homeApps.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
 
-        with(holder) {
+        with(holder as MyViewHolder) {
             with(fBinding) {
                 with(homeApps[position]) {
                     if (name.trim().isNotEmpty()) {

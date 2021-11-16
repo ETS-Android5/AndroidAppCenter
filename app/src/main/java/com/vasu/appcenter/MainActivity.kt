@@ -125,6 +125,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
         )
     }
 
+
     override fun onClick(v: View) {
         when (v) {
             mBinding.layoutHeader.ivHeaderBack -> {

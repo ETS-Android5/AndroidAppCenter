@@ -4,30 +4,24 @@ plugins {
     id 'kotlin-kapt'
 }
 android {
-    compileSdkVersion 31
+    compileSdk 31
+
     defaultConfig {
         applicationId "com.vasu.appcenter"
-        minSdkVersion 16
-        targetSdkVersion 31
+        minSdk 16
+        targetSdk 31
         versionCode 2
         versionName "1.1"
         multiDexEnabled true
-        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        /* ToDO.. R8 progaurd rules*/
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        debug {
-            debuggable true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-
     }
 
     buildFeatures {

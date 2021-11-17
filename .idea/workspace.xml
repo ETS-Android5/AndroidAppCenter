@@ -16,11 +16,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1cc07c26-ec47-4ca6-9f61-25a30314551f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/AppCenter.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/AppCenter.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/newAppCenter/AppCenter.appcenter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/newAppCenter/AppCenter.appcenter.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adshelper/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/base/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appcenter/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/appcenter/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637065670362</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Testing commit">
+      <created>1637066667220</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1637066667220</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -222,7 +229,8 @@
     </ignored-roots>
     <MESSAGE value="Initial commit" />
     <MESSAGE value="add adshelper, appcenter, base Module" />
-    <option name="LAST_COMMIT_MESSAGE" value="add adshelper, appcenter, base Module" />
+    <MESSAGE value="Testing commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

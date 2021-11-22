@@ -17,6 +17,7 @@ import com.google.android.gms.ads.RequestConfiguration
 
 var isInterstitialAdShow = false
 var isNeedToShowAds = true
+var isAppStarted = false
 
 /**
  * Extension method to Get String resource for Context.

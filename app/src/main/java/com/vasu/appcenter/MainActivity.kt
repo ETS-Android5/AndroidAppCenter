@@ -39,17 +39,21 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
         NativeAdvancedHelper.loadNativeAdvancedAd(
             fContext = mActivity,
             NativeAdsSize.Big,
-            mBinding.flNativeAdPlaceHolderBig
-        )
-        NativeAdvancedHelper.loadNativeAdvancedAd(
-            fContext = mActivity,
-            NativeAdsSize.Medium,
-            mBinding.flNativeAdPlaceHolderMedium
-        )
-        NativeAdvancedHelper.loadNativeAdvancedAd(
-            fContext = mActivity,
-            NativeAdsSize.Small,
-            mBinding.flNativeAdPlaceHolderSmall
+            mBinding.flNativeAdPlaceHolderBig,
+            isAdLoaded = {
+                NativeAdvancedHelper.loadNativeAdvancedAd(
+                    fContext = mActivity,
+                    NativeAdsSize.Medium,
+                    mBinding.flNativeAdPlaceHolderMedium,
+                    /*isAdLoaded = {
+                        NativeAdvancedHelper.loadNativeAdvancedAd(
+                            fContext = mActivity,
+                            NativeAdsSize.Small,
+                            mBinding.flNativeAdPlaceHolderSmall
+                        )
+                    }*/
+                )
+            }
         )
 
         GiftIconHelper.loadGiftAd(
@@ -62,7 +66,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
     override fun initView() {
         super.initView()
 
-        mBinding.layoutHeader.ivHeaderBack.setImageDrawable(mActivity.getDrawableRes(R.drawable.ic_back))
+        mBinding.layoutHeader.ivHeaderBack.setImageDrawable(mActivity.getDrawableRes(R.drawable.ic_new_header_back))
         mBinding.layoutHeader.ivHeaderRightIcon.gone
     }
 
@@ -133,13 +137,15 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
                     .setAppPackageName("com.vehicle.rto.vahan.status.information.register")
                     .setTextColor(Color.BLUE)
                     .setThemeColor(Color.RED)
-//                    .setShareIcon(R.drawable.default_star)
-//                    .setBackIcon(R.drawable.default_star)
+                    .setShareIcon(R.drawable.ic_share_blue)
+                    .setBackIcon(R.drawable.ic_new_header_back)
                     .setShareMessage("abc")
                     .launch()
             }
             mBinding.showInterstitialAds -> {
-                mActivity.isShowInterstitialAd { }
+                mActivity.isShowInterstitialAd {
+
+                }
             }
             mBinding.showRewardVideoAds -> {
                 mActivity.showRewardVideoAd()

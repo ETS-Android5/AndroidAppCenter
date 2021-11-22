@@ -32,8 +32,8 @@
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:text="@string/more_apps"
-                android:textSize="@dimen/_16ssp"
                 android:textColor="@android:color/white"
+                android:textSize="@dimen/_16ssp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/ma_iv_back"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,25 +44,27 @@
                 android:id="@+id/ma_iv_back"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
-                android:padding="14dp"
                 android:contentDescription="@string/app_name"
+                android:padding="14dp"
                 android:src="@drawable/ic_back"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@android:color/white" />
 
             <ImageView
                 android:id="@+id/ma_iv_share"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
-                android:padding="14dp"
                 android:contentDescription="@string/app_name"
+                android:padding="14dp"
                 android:src="@drawable/ic_share"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@android:color/white" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -140,8 +142,8 @@
             android:layout_margin="25dp"
             android:gravity="center"
             android:text="@string/pkg_not_exist"
-            android:textSize="@dimen/_14ssp"
             android:textColor="@color/text_empty"
+            android:textSize="@dimen/_14ssp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

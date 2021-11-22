@@ -233,19 +233,15 @@
             app:layout_constraintStart_toStartOf="@id/ad_headline"
             app:layout_constraintTop_toBottomOf="@+id/cl_ad_price_store" />
 
-
         <Button
             android:id="@+id/ad_call_to_action"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
-            android:backgroundTint="?attr/colorAccent"
+            android:background="@drawable/native_ad_button"
             android:gravity="center"
-            android:paddingStart="28dp"
-            android:paddingLeft="28dp"
-            android:paddingEnd="28dp"
-            android:paddingRight="28dp"
+            android:textStyle="bold"
             android:text="ad_call_to_action"
             android:textAlignment="center"
             android:textAllCaps="true"

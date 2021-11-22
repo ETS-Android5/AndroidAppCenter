@@ -34,6 +34,10 @@ object NativeAdvancedHelper {
             return mNativeAd
         }
 
+    init {
+        Log.e(TAG, "NativeAdvancedHelper: init class")
+    }
+
     /**
      * Call this method when you need to load your Native Advanced AD
      * you need to call this method only once in any activity or fragment
@@ -53,6 +57,7 @@ object NativeAdvancedHelper {
         @NonNull fSize: NativeAdsSize,
         @NonNull fLayout: FrameLayout,
         isNeedLayoutShow: Boolean = true,
+        isAddVideoOptions: Boolean = false,
         isAdLoaded: (isNeedToRemoveCloseButton: Boolean) -> Unit = {},
         onClickAdClose: () -> Unit = {}
     ) {
@@ -60,7 +65,8 @@ object NativeAdvancedHelper {
 
         if (mNativeAd == null) {
 
-            val builder = AdLoader.Builder(fContext, fContext.getStringRes(R.string.admob_nativead_id))
+            val builder =
+                AdLoader.Builder(fContext, fContext.getStringRes(R.string.admob_nativead_id))
 
             builder.forNativeAd { unifiedNativeAd ->
                 Log.i(TAG, "loadAd: new live Ad -> ${unifiedNativeAd.headline}")
@@ -75,38 +81,40 @@ object NativeAdvancedHelper {
                 )
             }
 
-            /*val videoOptions = VideoOptions.Builder()
-                .setStartMuted(false)
-                .build()
+            if (isAddVideoOptions) {
+                val videoOptions = VideoOptions.Builder()
+                    .setStartMuted(false)
+                    .build()
 
-            val adOptions: NativeAdOptions = NativeAdOptions.Builder()
-                .setVideoOptions(videoOptions)
-                .setMediaAspectRatio(NativeAdOptions.NATIVE_MEDIA_ASPECT_RATIO_SQUARE)
-                .build()
+                val adOptions: NativeAdOptions = NativeAdOptions.Builder()
+                    .setVideoOptions(videoOptions)
+                    .setMediaAspectRatio(NativeAdOptions.NATIVE_MEDIA_ASPECT_RATIO_SQUARE)
+                    .build()
 
-            builder.withNativeAdOptions(adOptions)*/
+                builder.withNativeAdOptions(adOptions)
+            }
 
             val adLoader = builder.withAdListener(object : AdListener() {
-                override fun onAdFailedToLoad(error: LoadAdError) {
-                    super.onAdFailedToLoad(error)
-                    Log.e(TAG, "onAdFailedToLoad: UnifiedNativeAd, Ad failed to load : ${error.message}")
+
+                override fun onAdClosed() {
+                    super.onAdClosed()
+                    Log.e(TAG, "onAdClosed: ")
+                    fLayout.removeAllViews()
+                    loadNativeAdvancedAd(
+                        fContext = fContext,
+                        fSize = fSize,
+                        fLayout = fLayout,
+                        isNeedLayoutShow = isNeedLayoutShow,
+                        isAddVideoOptions = isAddVideoOptions,
+                        isAdLoaded = isAdLoaded,
+                        onClickAdClose = onClickAdClose
+                    )
                 }
 
                 override fun onAdOpened() {
                     super.onAdOpened()
                     Log.e(TAG, "onAdOpened: ")
                     mNativeAd = null
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        fLayout.removeAllViews()
-                        loadNativeAdvancedAd(
-                            fContext = fContext,
-                            fSize = fSize,
-                            fLayout = fLayout,
-                            isNeedLayoutShow = isNeedLayoutShow,
-                            isAdLoaded = isAdLoaded,
-                            onClickAdClose = onClickAdClose
-                        )
-                    }, 1000)
                 }
             }).build()
 
@@ -139,24 +147,42 @@ object NativeAdvancedHelper {
         val adView = when (fSize) {
 
             NativeAdsSize.Big -> {
-                fContext.inflater.inflate(R.layout.layout_google_native_ad_big, null) as NativeAdView
+                fContext.inflater.inflate(
+                    R.layout.layout_google_native_ad_big,
+                    null
+                ) as NativeAdView
             }
 
             NativeAdsSize.Medium -> {
-                fContext.inflater.inflate(R.layout.layout_google_native_ad_medium, null) as NativeAdView
+                fContext.inflater.inflate(
+                    R.layout.layout_google_native_ad_medium,
+                    null
+                ) as NativeAdView
             }
 
             NativeAdsSize.Small -> {
-                fContext.inflater.inflate(R.layout.layout_google_native_ad_banner, null) as NativeAdView
+                fContext.inflater.inflate(
+                    R.layout.layout_google_native_ad_banner,
+                    null
+                ) as NativeAdView
             }
             NativeAdsSize.ExitDialog -> {
-                fContext.inflater.inflate(R.layout.layout_google_native_ad_exit_dialog, null) as NativeAdView
+                fContext.inflater.inflate(
+                    R.layout.layout_google_native_ad_exit_dialog,
+                    null
+                ) as NativeAdView
             }
             NativeAdsSize.FullScreen -> {
                 if (nativeAd.starRating != null && nativeAd.price != null && nativeAd.store != null) {
-                    fContext.inflater.inflate(R.layout.layout_google_native_ad_exit_full_screen_app_store, null) as ConstraintLayout
+                    fContext.inflater.inflate(
+                        R.layout.layout_google_native_ad_exit_full_screen_app_store,
+                        null
+                    ) as ConstraintLayout
                 } else {
-                    fContext.inflater.inflate(R.layout.layout_google_native_ad_exit_full_screen_website, null) as NativeAdView
+                    fContext.inflater.inflate(
+                        R.layout.layout_google_native_ad_exit_full_screen_website,
+                        null
+                    ) as NativeAdView
                 }
             }
         }
@@ -164,7 +190,11 @@ object NativeAdvancedHelper {
 
         when (fSize) {
             NativeAdsSize.FullScreen -> {
-                populateBlurImageDialogNativeAdView(nativeAd, adView.findViewById(R.id.native_ad_view), onClickAdClose)
+                populateBlurImageDialogNativeAdView(
+                    nativeAd,
+                    adView.findViewById(R.id.native_ad_view),
+                    onClickAdClose
+                )
             }
             NativeAdsSize.ExitDialog -> {
                 populateExitDialogNativeAdView(nativeAd, adView.findViewById(R.id.native_ad_view))
@@ -188,7 +218,11 @@ object NativeAdvancedHelper {
         }
     }
 
-    private fun populateBlurImageDialogNativeAdView(nativeAd: NativeAd, adView: NativeAdView, onClickAdClose: () -> Unit) {
+    private fun populateBlurImageDialogNativeAdView(
+        nativeAd: NativeAd,
+        adView: NativeAdView,
+        onClickAdClose: () -> Unit
+    ) {
 
         mNativeAd = nativeAd
 
@@ -245,7 +279,8 @@ object NativeAdvancedHelper {
             adView.starRatingView?.visibility = View.GONE
             (adView.findViewById(R.id.txt_rating) as TextView?)?.visibility = View.GONE
         } else if (adView.starRatingView != null) {
-            (adView.findViewById(R.id.txt_rating) as TextView?)?.text = nativeAd.starRating!!.toFloat().toString()
+            (adView.findViewById(R.id.txt_rating) as TextView?)?.text =
+                nativeAd.starRating!!.toFloat().toString()
             (adView.starRatingView as RatingBar).rating = nativeAd.starRating!!.toFloat()
             adView.starRatingView?.visibility = View.VISIBLE
             (adView.findViewById(R.id.txt_rating) as TextView?)?.visibility = View.VISIBLE
@@ -389,14 +424,34 @@ object NativeAdvancedHelper {
             (adView.callToActionView as Button).text = nativeAd.callToAction
         }
 
-        if (nativeAd.icon == null && adView.iconView != null) {
+        if (nativeAd.icon != null && adView.iconView != null) {
+            (adView.iconView as ImageView).setImageDrawable(
+                nativeAd.icon!!.drawable
+            )
+            adView.iconView!!.visibility = View.VISIBLE
+        } else if (adView.iconView != null) {
+            if (nativeAd.images.size > 0) {
+                if (nativeAd.images[0] != null && nativeAd.images[0].drawable != null) {
+                    (adView.iconView as ImageView).setImageDrawable(nativeAd.images[0].drawable!!)
+                    adView.iconView!!.visibility = View.VISIBLE
+                } else {
+                    adView.iconView!!.visibility = View.GONE
+                }
+            } else {
+                adView.iconView!!.visibility = View.GONE
+            }
+        } else {
+            adView.iconView!!.visibility = View.GONE
+        }
+
+        /*if (nativeAd.icon == null && adView.iconView != null) {
             adView.iconView!!.visibility = View.GONE
         } else if (adView.iconView != null) {
             (adView.iconView as ImageView).setImageDrawable(
                 nativeAd.icon!!.drawable
             )
             adView.iconView!!.visibility = View.VISIBLE
-        }
+        }*/
 
         if (nativeAd.price == null && adView.priceView != null) {
             adView.priceView!!.visibility = View.INVISIBLE
@@ -420,7 +475,7 @@ object NativeAdvancedHelper {
         }
 
         if (nativeAd.starRating == null && adView.starRatingView != null) {
-            adView.starRatingView!!.visibility = View.INVISIBLE
+            adView.starRatingView!!.visibility = View.GONE
         } else if (adView.starRatingView != null) {
             (adView.starRatingView as RatingBar).rating = nativeAd.starRating!!.toFloat()
             adView.starRatingView!!.visibility = View.VISIBLE
@@ -448,7 +503,8 @@ object NativeAdvancedHelper {
         val builder = StringBuilder()
         for (i in words.indices) {
             var word: String = words[i]
-            word = if (word.isEmpty()) word else Character.toUpperCase(word[0]).toString() + word.substring(1).lowercase()
+            word = if (word.isEmpty()) word else Character.toUpperCase(word[0])
+                .toString() + word.substring(1).lowercase()
             builder.append(word)
             if (i != (words.size - 1)) {
                 builder.append(" ")

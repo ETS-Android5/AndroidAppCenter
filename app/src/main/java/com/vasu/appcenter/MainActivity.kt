@@ -17,6 +17,10 @@ import com.example.app.base.utils.gone
 import com.example.app.base.utils.visible
 import com.example.latest.vasu.newappcenter.MoreApps
 import com.vasu.appcenter.databinding.ActivityMainBinding
+import android.widget.CompoundButton
+
+
+
 
 class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
 
@@ -36,25 +40,27 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
         RewardVideoHelper.loadRewardVideoAd(fContext = mActivity)
         InterstitialRewardHelper.loadRewardedInterstitialAd(fContext = mActivity)
 
-        NativeAdvancedHelper.loadNativeAdvancedAd(
-            fContext = mActivity,
-            NativeAdsSize.Big,
-            mBinding.flNativeAdPlaceHolderBig,
-            isAdLoaded = {
-                NativeAdvancedHelper.loadNativeAdvancedAd(
-                    fContext = mActivity,
-                    NativeAdsSize.Medium,
-                    mBinding.flNativeAdPlaceHolderMedium,
-                    /*isAdLoaded = {
-                        NativeAdvancedHelper.loadNativeAdvancedAd(
-                            fContext = mActivity,
-                            NativeAdsSize.Small,
-                            mBinding.flNativeAdPlaceHolderSmall
-                        )
-                    }*/
-                )
+        mBinding.adsSwitch.setOnCheckedChangeListener { _, isChecked ->
+            Log.e(TAG, "initAds: setOnCheckedChangeListener isChecked::$isChecked")
+            if (NativeAdvancedHelper.getNativeAd != null) {
+                NativeAdvancedHelper.destroy()
             }
-        )
+
+            NativeAdvancedHelper.loadNativeAdvancedAd(
+                fContext = mActivity,
+                NativeAdsSize.Big,
+                mBinding.flNativeAdPlaceHolderBig,
+                isAddVideoOptions = isChecked,
+                isAdLoaded = {
+                    NativeAdvancedHelper.loadNativeAdvancedAd(
+                        fContext = mActivity,
+                        NativeAdsSize.Medium,
+                        mBinding.flNativeAdPlaceHolderMedium,
+                        isAddVideoOptions = isChecked,
+                    )
+                }
+            )
+        }
 
         GiftIconHelper.loadGiftAd(
             fContext = mActivity,
@@ -118,6 +124,8 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
 
     override fun initViewListener() {
         super.initViewListener()
+
+        mBinding.adsSwitch.isChecked = true
 
         setClickListener(
             mBinding.layoutHeader.ivHeaderBack,

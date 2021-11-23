@@ -4,19 +4,20 @@ package com.example.app.adshelper
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.annotation.NonNull
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.LifecycleObserver
 import com.example.app.adshelper.widgets.BlurDrawable
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdLoader
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.VideoOptions
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
-import java.lang.StringBuilder
 
 /**
  * @author Akshay Harsoda
@@ -24,7 +25,7 @@ import java.lang.StringBuilder
  *
  * NativeAdvancedHelper.kt - Simple object which has load and handle your multiple size Native Advanced AD data
  */
-object NativeAdvancedHelper {
+object NativeAdvancedHelper: LifecycleObserver {
 
     private var mNativeAd: NativeAd? = null
     private val TAG = "Admob_${javaClass.simpleName}"
@@ -35,14 +36,14 @@ object NativeAdvancedHelper {
         }
 
     init {
-        Log.e(TAG, "NativeAdvancedHelper: init class")
+
     }
 
     /**
      * Call this method when you need to load your Native Advanced AD
      * you need to call this method only once in any activity or fragment
      *
-     * this method will load your Native Advanced AD with 4 different size like [NativeAdsSize.Small], [NativeAdsSize.Medium], [NativeAdsSize.Big], [NativeAdsSize.ExitDialog], [NativeAdsSize.FullScreen]
+     * this method will load your Native Advanced AD with 4 different size like [NativeAdsSize.Medium], [NativeAdsSize.Big], [NativeAdsSize.FullScreen]
      * for Native Advanced AD Size @see [NativeAdsSize] once
      *
      * @param fContext this is a reference to your activity or fragment context
@@ -160,18 +161,6 @@ object NativeAdvancedHelper {
                 ) as NativeAdView
             }
 
-            NativeAdsSize.Small -> {
-                fContext.inflater.inflate(
-                    R.layout.layout_google_native_ad_banner,
-                    null
-                ) as NativeAdView
-            }
-            NativeAdsSize.ExitDialog -> {
-                fContext.inflater.inflate(
-                    R.layout.layout_google_native_ad_exit_dialog,
-                    null
-                ) as NativeAdView
-            }
             NativeAdsSize.FullScreen -> {
                 if (nativeAd.starRating != null && nativeAd.price != null && nativeAd.store != null) {
                     fContext.inflater.inflate(
@@ -190,15 +179,13 @@ object NativeAdvancedHelper {
 
         when (fSize) {
             NativeAdsSize.FullScreen -> {
-                populateBlurImageDialogNativeAdView(
+                populateFullScreenNativeAdView(
                     nativeAd,
                     adView.findViewById(R.id.native_ad_view),
                     onClickAdClose
                 )
             }
-            NativeAdsSize.ExitDialog -> {
-                populateExitDialogNativeAdView(nativeAd, adView.findViewById(R.id.native_ad_view))
-            }
+
             else -> {
                 populateNativeAdView(nativeAd, adView as NativeAdView)
             }
@@ -218,7 +205,7 @@ object NativeAdvancedHelper {
         }
     }
 
-    private fun populateBlurImageDialogNativeAdView(
+    private fun populateFullScreenNativeAdView(
         nativeAd: NativeAd,
         adView: NativeAdView,
         onClickAdClose: () -> Unit
@@ -245,7 +232,7 @@ object NativeAdvancedHelper {
                 adView.mediaView?.setMediaContent(mediaContent)
             }
         } else {
-            populateBlurImageDialogNativeAdView(mNativeAd!!, adView, onClickAdClose)
+            populateFullScreenNativeAdView(mNativeAd!!, adView, onClickAdClose)
         }
 
 
@@ -337,55 +324,6 @@ object NativeAdvancedHelper {
         adView.setNativeAd(nativeAd)
     }
 
-    private fun populateExitDialogNativeAdView(nativeAd: NativeAd, adView: NativeAdView) {
-        Log.i(TAG, Throwable().stackTrace[0].methodName)
-
-        mNativeAd = nativeAd
-
-        adView.headlineView = adView.findViewById(R.id.ad_headline)
-        adView.mediaView = adView.findViewById(R.id.ad_media)
-
-        adView.iconView = adView.findViewById(R.id.ad_app_icon)
-        adView.bodyView = adView.findViewById(R.id.ad_body)
-        adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
-
-
-        (adView.headlineView as TextView).text = nativeAd.headline
-
-        if (nativeAd.mediaContent != null && adView.mediaView != null) {
-            adView.mediaView!!.setMediaContent(nativeAd.mediaContent!!)
-        } else if (adView.mediaView != null) {
-            populateExitDialogNativeAdView(nativeAd, adView)
-        }
-
-        adView.mediaView?.setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-
-        if (nativeAd.body == null && adView.bodyView != null) {
-            adView.bodyView!!.visibility = View.GONE
-        } else if (adView.bodyView != null) {
-            adView.bodyView!!.visibility = View.VISIBLE
-            (adView.bodyView as TextView).text = nativeAd.body
-        }
-
-        if (nativeAd.icon == null && adView.iconView != null) {
-            adView.iconView!!.visibility = View.GONE
-        } else if (adView.iconView != null) {
-            (adView.iconView as ImageView).setImageDrawable(
-                nativeAd.icon!!.drawable
-            )
-            adView.iconView!!.visibility = View.VISIBLE
-        }
-
-        if (nativeAd.callToAction == null && adView.callToActionView != null) {
-            adView.callToActionView!!.visibility = View.GONE
-        } else if (adView.callToActionView != null) {
-            adView.callToActionView!!.visibility = View.VISIBLE
-            (adView.callToActionView as Button).text = nativeAd.callToAction
-        }
-
-        adView.setNativeAd(nativeAd)
-    }
-
     private fun populateNativeAdView(nativeAd: NativeAd, adView: NativeAdView) {
         Log.i(TAG, Throwable().stackTrace[0].methodName)
 
@@ -404,8 +342,10 @@ object NativeAdvancedHelper {
 
         (adView.headlineView as TextView).text = nativeAd.headline
 
-        if (nativeAd.mediaContent != null && adView.mediaView != null) {
-            adView.mediaView!!.setMediaContent(nativeAd.mediaContent!!)
+        if (nativeAd.mediaContent != null) {
+            if (adView.mediaView != null) {
+                adView.mediaView!!.setMediaContent(nativeAd.mediaContent!!)
+            }
         } else {
             populateNativeAdView(mNativeAd!!, adView)
         }
@@ -443,15 +383,6 @@ object NativeAdvancedHelper {
         } else {
             adView.iconView!!.visibility = View.GONE
         }
-
-        /*if (nativeAd.icon == null && adView.iconView != null) {
-            adView.iconView!!.visibility = View.GONE
-        } else if (adView.iconView != null) {
-            (adView.iconView as ImageView).setImageDrawable(
-                nativeAd.icon!!.drawable
-            )
-            adView.iconView!!.visibility = View.VISIBLE
-        }*/
 
         if (nativeAd.price == null && adView.priceView != null) {
             adView.priceView!!.visibility = View.INVISIBLE

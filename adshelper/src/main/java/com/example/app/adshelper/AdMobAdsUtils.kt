@@ -120,5 +120,5 @@ fun setTestDeviceIds() {
  * Extension method for add different size of Native Ad
  */
 enum class NativeAdsSize {
-    Big, Medium, Small, ExitDialog, FullScreen
+    Big, Medium, FullScreen
 }

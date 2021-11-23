@@ -41,17 +41,6 @@
             app:layout_constraintTop_toBottomOf="@id/txt_ad"
             tools:ignore="ContentDescription" />
 
-        <com.google.android.gms.ads.nativead.MediaView
-            android:id="@+id/ad_media"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_gravity="center_horizontal"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/ad_app_icon"
-            app:layout_constraintEnd_toEndOf="@id/ad_app_icon"
-            app:layout_constraintStart_toStartOf="@id/ad_app_icon"
-            app:layout_constraintTop_toTopOf="@id/ad_app_icon" />
-
         <ImageView
             android:id="@+id/ad_app_icon"
             android:layout_width="50dp"

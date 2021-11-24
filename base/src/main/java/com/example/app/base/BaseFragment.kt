@@ -95,7 +95,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener {
      * This method for load your all type of ads
      */
     private fun loadAds() {
-        if (mContext.isOnline) {
+        if (isOnline) {
             initAds()
         }
     }

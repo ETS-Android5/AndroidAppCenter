@@ -16,5 +16,10 @@
         <item name="android:windowExitAnimation">@anim/dialog_slide_bottom</item>
     </style>
 
+    <style name="WhiteAccent" parent="Widget.AppCompat.ProgressBar">
+        <item name="colorAccent">?attr/colorAccent</item> <!-- Whatever color you want-->
+<!--        <item name="android:progressTint">?attr/colorAccent</item>-->
+    </style>
+
 
 </resources>

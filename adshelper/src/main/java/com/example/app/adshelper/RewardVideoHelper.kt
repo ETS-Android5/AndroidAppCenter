@@ -32,14 +32,17 @@ object RewardVideoHelper {
 
     private var mListener: AdMobAdsListener? = null
 
-    private fun loadRewardVideoAd(@NonNull fContext: Context, @NonNull fListener: AdMobAdsListener) {
+    private fun loadRewardVideoAd(
+        @NonNull fContext: Context,
+        @NonNull fListener: AdMobAdsListener
+    ) {
         var lRewardedAd: RewardedAd?
 
         fListener.onStartToLoadRewardVideoAd()
 
         RewardedAd.load(
             fContext,
-            fContext.getStringRes(R.string.admob_reward_video_id),
+            admob_reward_video_ad_id ?: fContext.getStringRes(R.string.admob_reward_video_ad_id),
             AdRequest.Builder().build(),
             object : RewardedAdLoadCallback() {
 
@@ -73,7 +76,10 @@ object RewardVideoHelper {
                 }
 
                 override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.i(TAG, "onAdFailedToLoad: RewardVideo, Ad failed to load : ${adError.responseInfo}")
+                    Log.i(
+                        TAG,
+                        "onAdFailedToLoad: RewardVideo, Ad failed to load : ${adError.responseInfo}"
+                    )
                     lRewardedAd = null
                     fListener.onAdFailed()
                 }
@@ -125,7 +131,11 @@ object RewardVideoHelper {
      * @param onUserEarnedReward @see [AdMobAdsListener.onUserEarnedReward]
      * @param onAdLoaded @see [AdMobAdsListener.onAdLoaded]
      */
-    fun FragmentActivity.isShowRewardVideoAd(onStartToLoadRewardVideoAd: () -> Unit, onUserEarnedReward: (isUserEarnedReward: Boolean) -> Unit, onAdLoaded: () -> Unit) {
+    fun FragmentActivity.isShowRewardVideoAd(
+        onStartToLoadRewardVideoAd: () -> Unit,
+        onUserEarnedReward: (isUserEarnedReward: Boolean) -> Unit,
+        onAdLoaded: () -> Unit
+    ) {
         isUserEarnedReward = false
 
         mListener = object : AdMobAdsListener {

@@ -17,9 +17,6 @@ import com.example.app.base.utils.gone
 import com.example.app.base.utils.visible
 import com.example.latest.vasu.newappcenter.MoreApps
 import com.vasu.appcenter.databinding.ActivityMainBinding
-import android.widget.CompoundButton
-
-
 
 
 class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
@@ -42,18 +39,16 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
 
         mBinding.adsSwitch.setOnCheckedChangeListener { _, isChecked ->
             Log.e(TAG, "initAds: setOnCheckedChangeListener isChecked::$isChecked")
-            if (NativeAdvancedHelper.getNativeAd != null) {
-                NativeAdvancedHelper.destroy()
+            if (NativeAdvancedModelHelper.getNativeAd != null) {
+                NativeAdvancedModelHelper.destroy()
             }
 
-            NativeAdvancedHelper.loadNativeAdvancedAd(
-                fContext = mActivity,
+            NativeAdvancedModelHelper(mActivity).loadNativeAdvancedAd(
                 NativeAdsSize.Big,
                 mBinding.flNativeAdPlaceHolderBig,
                 isAddVideoOptions = isChecked,
                 isAdLoaded = {
-                    NativeAdvancedHelper.loadNativeAdvancedAd(
-                        fContext = mActivity,
+                    NativeAdvancedModelHelper(mActivity).loadNativeAdvancedAd(
                         NativeAdsSize.Medium,
                         mBinding.flNativeAdPlaceHolderMedium,
                         isAddVideoOptions = isChecked,
@@ -162,7 +157,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
                 mActivity.showRewardedInterstitialAd()
             }
             mBinding.showFullScreenNativeAd -> {
-                FullScreenNativeAdDialog(activity = mActivity).showFullScreenNativeAdDialog()
+                FullScreenNativeAdDialog(activity = mActivity).showFullScreenNativeAdDialog(mBinding.adsSwitch.isChecked)
             }
             mBinding.showMoreAppView -> {
                 mBinding.svAds.gone

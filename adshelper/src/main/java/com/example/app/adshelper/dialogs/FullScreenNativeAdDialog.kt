@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import com.example.app.adshelper.*
 import com.example.app.adshelper.databinding.DialogFullScreenNativeAdBinding
 import com.example.app.adshelper.visible
@@ -15,7 +16,7 @@ class FullScreenNativeAdDialog(
     private val onDialogDismiss : () -> Unit = {}
 ) : Dialog(activity, R.style.full_screen_dialog) {
 
-    private val TAG = javaClass.simpleName
+    private val TAG: String = javaClass.simpleName
 
     private var mBinding: DialogFullScreenNativeAdBinding
 
@@ -54,19 +55,21 @@ class FullScreenNativeAdDialog(
         }
     }
 
-    fun showFullScreenNativeAdDialog() {
-        if (!activity.isFinishing && !isShowing && activity.isOnline) {
+    fun showFullScreenNativeAdDialog(checked: Boolean) {
+        if (!activity.isFinishing && !isShowing && isOnline) {
             Log.i(TAG, "showFullScreenNativeAdDialog: ")
 
             mBinding.ivCloseAd.visibility = View.GONE
 
-            NativeAdvancedHelper.loadNativeAdvancedAd(
-                fContext = activity,
+            NativeAdvancedModelHelper(activity).loadNativeAdvancedAd(
                 fSize = NativeAdsSize.FullScreen,
                 fLayout = mBinding.flNativeAdPlaceHolder,
+                isAddVideoOptions = checked,
                 isAdLoaded = { isNeedToRemoveCloseButton ->
                     if (!isNeedToRemoveCloseButton) {
                         mBinding.ivCloseAd.visibility = View.VISIBLE
+                    } else {
+                        mBinding.ivCloseAd.visibility = View.GONE
                     }
                     mBinding.flNativeAdPlaceHolder.visible
                 },
@@ -75,6 +78,8 @@ class FullScreenNativeAdDialog(
                 }
             )
             show()
+        } else if (!isOnline){
+            Toast.makeText(activity, "check your internet connection", Toast.LENGTH_SHORT).show()
         }
     }
 }

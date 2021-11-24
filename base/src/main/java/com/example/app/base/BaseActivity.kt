@@ -46,7 +46,7 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope, View.OnClickL
      * your log tag name
      */
     @Suppress("PropertyName")
-    val TAG = javaClass.simpleName
+    val TAG: String = javaClass.simpleName
 
     var mJob: Job = Job()
 

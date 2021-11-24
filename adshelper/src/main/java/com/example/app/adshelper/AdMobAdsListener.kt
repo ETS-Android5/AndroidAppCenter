@@ -3,6 +3,7 @@
 package com.example.app.adshelper
 
 import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
 
@@ -28,6 +29,13 @@ interface AdMobAdsListener {
      * This method is called when your AD was closed after successfully showing to the user
      */
     fun onAdClosed() {}
+
+    /**
+     * This method is called when your Native AD data was loaded successfully
+     *
+     * @param nativeAd it's a reference to your Native Ad
+     */
+    fun onNativeAdLoaded(nativeAd: NativeAd) {}
 
     /**
      * This method is called when your Interstitial AD data was loaded successfully
@@ -67,4 +75,5 @@ interface AdMobAdsListener {
      * This method is called when your Reward Interstitial AD was start to load new AD
      */
     fun onStartToLoadRewardedInterstitialAd() {}
+
 }

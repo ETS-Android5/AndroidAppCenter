@@ -31,13 +31,15 @@ object InterstitialAdHelper {
 
     private var mListener: AdMobAdsListener? = null
 
+    private var mIsShowFullScreenNativeAd: Boolean = true
+
     internal fun loadAd(@NonNull fContext: Context, @NonNull fListener: AdMobAdsListener) {
 
         var lInterstitialAd: InterstitialAd?
 
         InterstitialAd.load(
             fContext,
-            fContext.getStringRes(R.string.admob_interstitialad_id),
+            admob_interstitial_ad_id ?: fContext.getStringRes(R.string.admob_interstitial_ad_id),
             AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
 
@@ -120,7 +122,7 @@ object InterstitialAdHelper {
 
     /**
      * Call this method when you need to show Interstitial AD
-     * also this method call our offline native dialog AD [NativeAdvancedAdDialogHelper] when Interstitial Ad fails and give call bake on same way
+     * also this method call our offline native dialog AD [FullScreenNativeAdDialog] when Interstitial Ad fails and give call bake on same way
      *
      * Use of this Method
      * activity.isShowInterstitialAd {[your code which has run after AD show or if AD fails to show]}
@@ -145,11 +147,11 @@ object InterstitialAdHelper {
                 Log.i(TAG, "isShowInterstitialAd: Show Interstitial Ad")
                 true
             } else {
-                if (NativeAdvancedHelper.getNativeAd != null && this.isOnline && !this.isFinishing) {
+                if (NativeAdvancedModelHelper.getNativeAd != null && isOnline && !this.isFinishing) {
                     FullScreenNativeAdDialog(this) {
                         mIsAnyAdShow = false
                         mListener?.onAdClosed()
-                    }.showFullScreenNativeAdDialog()
+                    }.showFullScreenNativeAdDialog(true)
                     true
                 } else {
                     false

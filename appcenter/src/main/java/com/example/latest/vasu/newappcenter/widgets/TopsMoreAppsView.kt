@@ -133,7 +133,7 @@ class TopsMoreAppsView : ConstraintLayout, CoroutineScope, View.OnClickListener 
         mBinding.layoutProgress.layoutProgressbar.visible
 
         when {
-            context.isOnline -> {
+            isOnline -> {
 
                 MainScope().launch(coroutineContext) {
 
@@ -181,7 +181,7 @@ class TopsMoreAppsView : ConstraintLayout, CoroutineScope, View.OnClickListener 
     override fun onClick(v: View) {
         when (v) {
             mBinding.layoutNoInternet.tvNoInternetRetry, mBinding.layoutWentWrong.tvWentWrongRetry -> {
-                if (context.isOnline) {
+                if (isOnline) {
                     initViewAction()
                 } else {
                     Toast.short(context, context.getStringRes(R.string.label_check_internet))

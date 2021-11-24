@@ -110,7 +110,7 @@ class MoreAppsActivity : BaseBindingActivity<ActivityMoreAppsBinding>() {
         mBinding.layoutProgress.layoutProgressbar.visible
 
         when {
-            mActivity.isOnline -> {
+            isOnline -> {
 
                 MainScope().launch(coroutineContext) {
 
@@ -165,7 +165,7 @@ class MoreAppsActivity : BaseBindingActivity<ActivityMoreAppsBinding>() {
                 shareApp()
             }
             mBinding.layoutNoInternet.tvNoInternetRetry, mBinding.layoutWentWrong.tvWentWrongRetry -> {
-                if (mActivity.isOnline) {
+                if (isOnline) {
                     initViewAction()
                 } else {
                     Toast.short(mActivity, getStringRes(R.string.label_check_internet))

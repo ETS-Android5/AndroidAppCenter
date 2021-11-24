@@ -52,4 +52,9 @@ dependencies {
     // For Dimension
     implementation "com.intuit.ssp:ssp-android:$sdp_ssp_version"
     implementation "com.intuit.sdp:sdp-android:$sdp_ssp_version"
+
+    /**
+     * For LifeCycle
+     */
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 }

@@ -39,7 +39,7 @@ object InterstitialRewardHelper {
 
         RewardedInterstitialAd.load(
             fContext,
-            fContext.getStringRes(R.string.admob_interstitialad_reward_id),
+            admob_interstitial_ad_reward_id ?: fContext.getStringRes(R.string.admob_interstitial_ad_reward_id),
             AdRequest.Builder().build(),
             object : RewardedInterstitialAdLoadCallback() {
 

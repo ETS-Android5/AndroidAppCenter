@@ -18,44 +18,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import java.io.IOException
 import kotlin.math.roundToInt
 
 /**
  * ToDo.. Return true if internet or wi-fi connection is working fine
  * <p>
  * Required permission
- * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
  * <uses-permission android:name="android.permission.INTERNET"/>
  *
  * @return true if you have the internet connection, or false if not.
  */
-@Suppress("DEPRECATION")
-inline val Context.isOnline: Boolean
+inline val isOnline: Boolean
     get() {
-        val connectivityManager =
-            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val capabilities =
-                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                return when {
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
-                            || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
-                            || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> return true
-                    else -> false
-                }
-            }
-        } else {
-            try {
-                val activeNetworkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
-                if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
-                    return true
-                }
-            } catch (e: Exception) {
-                Log.e("isNetworkAvailable", e.toString())
-            }
+        return try {
+            val command = "ping -c 1 google.com"
+            return Runtime.getRuntime().exec(command).waitFor() == 0
+        } catch (e: IOException) {
+            false
         }
-        return false
     }
 
 //<editor-fold desc="For View Data">

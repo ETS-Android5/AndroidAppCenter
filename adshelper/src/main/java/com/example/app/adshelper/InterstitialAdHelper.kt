@@ -91,7 +91,12 @@ object InterstitialAdHelper {
      *
      * @param fContext this is a reference to your activity context
      */
-    fun loadInterstitialAd(@NonNull fContext: Context, onAdLoaded: () -> Unit = {}) {
+    fun loadInterstitialAd(
+        @NonNull fContext: Context,
+        fIsShowFullScreenNativeAd: Boolean = true,
+        onAdLoaded: () -> Unit = {}
+    ) {
+        this.mIsShowFullScreenNativeAd = fIsShowFullScreenNativeAd
 
         loadAd(fContext, object : AdMobAdsListener {
             override fun onAdLoaded() {
@@ -109,7 +114,7 @@ object InterstitialAdHelper {
                 mIsAdMobAdLoaded = false
             }
 
-            override fun onAdClosed() {
+            override fun onAdClosed(isShowFullScreenAd: Boolean) {
                 mIsAdMobAdLoaded = false
                 mIsAnyAdShow = false
                 mInterstitialAdMob?.fullScreenContentCallback = null
@@ -129,13 +134,13 @@ object InterstitialAdHelper {
      *
      * @param onAdClosed this is a call back of your ad close, it will call also if your ad was not showing to the user
      */
-    fun FragmentActivity.isShowInterstitialAd(@NonNull onAdClosed: () -> Unit) {
+    fun FragmentActivity.isShowInterstitialAd(@NonNull onAdClosed: (isShowFullScreenAd: Boolean) -> Unit) {
         mListener = object : AdMobAdsListener {
-            override fun onAdClosed() {
+            override fun onAdClosed(isShowFullScreenAd: Boolean) {
                 Log.i(TAG, "onAdClosed: ")
                 isInterstitialAdShow = false
                 mIsAnyAdShow = false
-                onAdClosed.invoke()
+                onAdClosed.invoke(isShowFullScreenAd)
                 loadInterstitialAd(this@isShowInterstitialAd)
             }
         }
@@ -147,10 +152,10 @@ object InterstitialAdHelper {
                 Log.i(TAG, "isShowInterstitialAd: Show Interstitial Ad")
                 true
             } else {
-                if (NativeAdvancedModelHelper.getNativeAd != null && isOnline && !this.isFinishing) {
+                if (mIsShowFullScreenNativeAd && NativeAdvancedModelHelper.getNativeAd != null && isOnline && !this.isFinishing) {
                     FullScreenNativeAdDialog(this) {
                         mIsAnyAdShow = false
-                        mListener?.onAdClosed()
+                        mListener?.onAdClosed(true)
                     }.showFullScreenNativeAdDialog(true)
                     true
                 } else {
@@ -162,7 +167,7 @@ object InterstitialAdHelper {
         }
 
         if (!mIsAnyAdShow) {
-            mListener?.onAdClosed()
+            mListener?.onAdClosed(false)
         }
     }
 }

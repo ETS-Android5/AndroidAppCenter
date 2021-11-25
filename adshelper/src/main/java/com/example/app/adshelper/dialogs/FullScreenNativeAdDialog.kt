@@ -13,7 +13,7 @@ import com.example.app.adshelper.visible
 
 class FullScreenNativeAdDialog(
     private val activity: Activity,
-    private val onDialogDismiss : () -> Unit = {}
+    private val onDialogDismiss: () -> Unit = {}
 ) : Dialog(activity, R.style.full_screen_dialog) {
 
     private val TAG: String = javaClass.simpleName
@@ -56,7 +56,7 @@ class FullScreenNativeAdDialog(
     }
 
     fun showFullScreenNativeAdDialog(checked: Boolean) {
-        if (!activity.isFinishing && !isShowing && isOnline) {
+        if (NativeAdvancedModelHelper.getNativeAd != null && !activity.isFinishing && !isShowing && isOnline) {
             Log.i(TAG, "showFullScreenNativeAdDialog: ")
 
             mBinding.ivCloseAd.visibility = View.GONE
@@ -78,7 +78,7 @@ class FullScreenNativeAdDialog(
                 }
             )
             show()
-        } else if (!isOnline){
+        } else if (!isOnline) {
             Toast.makeText(activity, "check your internet connection", Toast.LENGTH_SHORT).show()
         }
     }

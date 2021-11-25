@@ -28,7 +28,7 @@ interface AdMobAdsListener {
     /**
      * This method is called when your AD was closed after successfully showing to the user
      */
-    fun onAdClosed() {}
+    fun onAdClosed(isShowFullScreenAd: Boolean = false) {}
 
     /**
      * This method is called when your Native AD data was loaded successfully

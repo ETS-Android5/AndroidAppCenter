@@ -146,8 +146,8 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
                     .launch()
             }
             mBinding.showInterstitialAds -> {
-                mActivity.isShowInterstitialAd {
-
+                mActivity.isShowInterstitialAd { isShowFullScreenAd ->
+                    Log.e(TAG, "onClick: isShowFullScreenAd::$isShowFullScreenAd")
                 }
             }
             mBinding.showRewardVideoAds -> {

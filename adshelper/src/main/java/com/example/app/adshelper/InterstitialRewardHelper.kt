@@ -104,8 +104,8 @@ object InterstitialRewardHelper {
                 mListener?.onAdLoaded()
             }
 
-            override fun onAdClosed() {
-                super.onAdClosed()
+            override fun onAdClosed(isShowFullScreenAd: Boolean) {
+                super.onAdClosed(isShowFullScreenAd)
                 mRewardedInterstitialAd?.fullScreenContentCallback = null
                 mRewardedInterstitialAd = null
                 mListener?.onUserEarnedReward(isUserEarnedReward = isUserEarnedReward)

@@ -83,12 +83,14 @@ internal object NativeAdvancedHelper {
 
                 override fun onAdClosed() {
                     super.onAdClosed()
-                    mNativeAd = null
-                    for (lListener in mListenerList) {
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            Log.i(TAG, "onAdClosed: ")
-                            lListener.onAdClosed()
-                        }, 500)
+                    if (isOnline) {
+                        mNativeAd = null
+                        for (lListener in mListenerList) {
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                Log.i(TAG, "onAdClosed: ")
+                                lListener.onAdClosed()
+                            }, 500)
+                        }
                     }
                 }
             }).build()

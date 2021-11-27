@@ -55,6 +55,8 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
                     )
                 }
             )
+
+//            NativeAdvancedModelHelper(mActivity).loadNativeAdvancedAd(NativeAdsSize.Medium, mBinding.flNativeAdPlaceHolderSmall)
         }
 
         GiftIconHelper.loadGiftAd(

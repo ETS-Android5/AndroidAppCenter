@@ -1,6 +1,7 @@
 package com.example.app.adshelper
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.View
@@ -50,11 +51,20 @@ class NativeAdvancedModelHelper(private val mContext: Context) :
     init {
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(object : DefaultLifecycleObserver {
+            
             override fun onDestroy(owner: LifecycleOwner) {
                 super.onDestroy(owner)
                 Log.i(TAG, "onDestroy: ")
-                if (NativeAdvancedHelper.mListenerList.contains(this@NativeAdvancedModelHelper)) {
-                    NativeAdvancedHelper.mListenerList.remove(this@NativeAdvancedModelHelper)
+
+                if (mContext is Activity && mContext.isFinishing) {
+                    Log.i(TAG, "onPause: isFinishing::${mContext.isFinishing}")
+
+                    if (NativeAdvancedHelper.mListenerList.contains(Pair(mContext, this@NativeAdvancedModelHelper))) {
+                        NativeAdvancedHelper.mListenerList.remove(Pair(mContext, this@NativeAdvancedModelHelper))
+                        Log.e(TAG, "onPause: Match & Remove ${NativeAdvancedHelper.mListenerList.contains(Pair(mContext, this@NativeAdvancedModelHelper))}")
+
+                        ProcessLifecycleOwner.get().lifecycle.removeObserver(this)
+                    }
                 }
             }
 
@@ -83,7 +93,7 @@ class NativeAdvancedModelHelper(private val mContext: Context) :
 
             override fun onPause(owner: LifecycleOwner) {
                 super.onPause(owner)
-                Log.i(TAG, "onPause: ")
+                Log.i(TAG, "onPause: mContext::$mContext")
                 isAdOwnerPause = true
             }
         })
@@ -427,8 +437,8 @@ class NativeAdvancedModelHelper(private val mContext: Context) :
         return builder.toString()
     }
 
-    override fun onAdClosed() {
-        super.onAdClosed()
+    override fun onAdClosed(isShowFullScreenAd: Boolean) {
+        super.onAdClosed(isShowFullScreenAd)
         Log.i(TAG, "onAdClosed: ")
 
         isAdClicked = true

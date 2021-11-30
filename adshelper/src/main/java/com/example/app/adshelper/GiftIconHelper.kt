@@ -91,7 +91,7 @@ object GiftIconHelper {
                 loadNewInterstitialAd(fContext, fivGiftIcon, fivBlastIcon)
             }
 
-            override fun onAdClosed() {
+            override fun onAdClosed(isShowFullScreenAd: Boolean) {
                 isInterstitialAdLoaded = false
                 isInterstitialAdShow = false
                 fivBlastIcon.gone

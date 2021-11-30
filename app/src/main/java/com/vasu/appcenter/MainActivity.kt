@@ -21,6 +21,8 @@ import com.vasu.appcenter.databinding.ActivityMainBinding
 
 class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
 
+    private var isFirstTime: Boolean = true
+
 
     override fun getActivityContext(): AppCompatActivity {
         return this@MainActivity
@@ -43,20 +45,23 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
                 NativeAdvancedModelHelper.destroy()
             }
 
+            isFirstTime = true
+
             NativeAdvancedModelHelper(mActivity).loadNativeAdvancedAd(
                 NativeAdsSize.Big,
                 mBinding.flNativeAdPlaceHolderBig,
                 isAddVideoOptions = isChecked,
                 isAdLoaded = {
-                    NativeAdvancedModelHelper(mActivity).loadNativeAdvancedAd(
-                        NativeAdsSize.Medium,
-                        mBinding.flNativeAdPlaceHolderMedium,
-                        isAddVideoOptions = isChecked,
-                    )
+                    if (isFirstTime) {
+                        isFirstTime = false
+                        NativeAdvancedModelHelper(mActivity).loadNativeAdvancedAd(
+                            NativeAdsSize.Medium,
+                            mBinding.flNativeAdPlaceHolderMedium,
+                            isAddVideoOptions = isChecked,
+                        )
+                    }
                 }
             )
-
-//            NativeAdvancedModelHelper(mActivity).loadNativeAdvancedAd(NativeAdsSize.Medium, mBinding.flNativeAdPlaceHolderSmall)
         }
 
         GiftIconHelper.loadGiftAd(
@@ -162,8 +167,10 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
                 FullScreenNativeAdDialog(activity = mActivity).showFullScreenNativeAdDialog(mBinding.adsSwitch.isChecked)
             }
             mBinding.showMoreAppView -> {
-                mBinding.svAds.gone
-                mBinding.moreAppView.visible
+//                mBinding.svAds.gone
+//                mBinding.moreAppView.visible
+
+                launchActivity(getActivityIntent<SecondActivity> { putBoolean("is_add_video_options", mBinding.adsSwitch.isChecked) })
             }
         }
     }

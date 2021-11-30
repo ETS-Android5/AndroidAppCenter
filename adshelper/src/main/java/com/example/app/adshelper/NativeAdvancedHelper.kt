@@ -26,7 +26,7 @@ internal object NativeAdvancedHelper {
 
     internal var mNativeAd: NativeAd? = null
 
-    internal val mListenerList: ArrayList<AdMobAdsListener> = ArrayList()
+    internal val mListenerList: ArrayList<Pair<Context, AdMobAdsListener>> = ArrayList()
 
     /**
      * Call this method when you need to load your Native Advanced AD
@@ -41,8 +41,9 @@ internal object NativeAdvancedHelper {
         isAddVideoOptions: Boolean = true,
         fListener: AdMobAdsListener
     ) {
-        if (!mListenerList.contains(fListener)) {
-            mListenerList.add(fListener)
+        if (!mListenerList.contains(Pair(fContext, fListener))) {
+            Log.e(TAG, "loadNativeAdvancedAd: New Listener::${fContext}")
+            mListenerList.add(Pair(fContext, fListener))
         }
 
         if (mNativeAd == null) {
@@ -50,7 +51,8 @@ internal object NativeAdvancedHelper {
             val builder =
                 AdLoader.Builder(
                     fContext,
-                    admob_native_advanced_ad_id ?: fContext.getStringRes(R.string.admob_native_advanced_ad_id)
+                    admob_native_advanced_ad_id
+                        ?: fContext.getStringRes(R.string.admob_native_advanced_ad_id)
                 )
 
             builder.forNativeAd { unifiedNativeAd ->
@@ -88,7 +90,7 @@ internal object NativeAdvancedHelper {
                         for (lListener in mListenerList) {
                             Handler(Looper.getMainLooper()).postDelayed({
                                 Log.i(TAG, "onAdClosed: ")
-                                lListener.onAdClosed()
+                                lListener.second.onAdClosed()
                             }, 500)
                         }
                     }

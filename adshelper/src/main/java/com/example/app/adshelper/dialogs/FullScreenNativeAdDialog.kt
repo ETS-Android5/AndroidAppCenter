@@ -1,5 +1,6 @@
 package com.example.app.adshelper.dialogs
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.graphics.Color
@@ -19,6 +20,17 @@ class FullScreenNativeAdDialog(
     private val TAG: String = javaClass.simpleName
 
     private var mBinding: DialogFullScreenNativeAdBinding
+
+    companion object {
+
+        @SuppressLint("StaticFieldLeak")
+        private var testDialog: FullScreenNativeAdDialog? = null
+
+        val isFullScreenNativeAdDialogShowing: Boolean
+            get() {
+                return testDialog != null && testDialog!!.isShowing
+            }
+    }
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -50,13 +62,15 @@ class FullScreenNativeAdDialog(
         }
 
         mBinding.ivCloseAd.setOnClickListener {
-            dismiss()
+            if (this.isShowing) {
+                this.dismiss()
+            }
             onDialogDismiss.invoke()
         }
     }
 
     fun showFullScreenNativeAdDialog(checked: Boolean) {
-        if (NativeAdvancedModelHelper.getNativeAd != null && !activity.isFinishing && !isShowing && isOnline) {
+        if (NativeAdvancedModelHelper.getNativeAd != null && !activity.isFinishing && !isShowing && activity.isOnline) {
             Log.i(TAG, "showFullScreenNativeAdDialog: ")
 
             mBinding.ivCloseAd.visibility = View.GONE
@@ -77,9 +91,12 @@ class FullScreenNativeAdDialog(
                     mBinding.ivCloseAd.performClick()
                 }
             )
+            testDialog = this
             show()
-        } else if (!isOnline) {
+        } else if (!activity.isOnline) {
             Toast.makeText(activity, "check your internet connection", Toast.LENGTH_SHORT).show()
+        } else if (NativeAdvancedModelHelper.getNativeAd != null) {
+            Toast.makeText(activity, "native ad not load", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -3,13 +3,16 @@
 package com.example.app.adshelper
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.StringRes
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
-import java.io.IOException
 
 
 var isInterstitialAdShow = false
@@ -71,18 +74,31 @@ internal inline val View.gone: View
  * ToDo.. Return true if internet or wi-fi connection is working fine
  * <p>
  * Required permission
+ * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
  * <uses-permission android:name="android.permission.INTERNET"/>
  *
  * @return true if you have the internet connection, or false if not.
  */
-inline val isOnline: Boolean
+@Suppress("DEPRECATION")
+inline val Context.isOnline: Boolean
     get() {
-        return try {
-            val command = "ping -c 1 google.com"
-            return Runtime.getRuntime().exec(command).waitFor() == 0
-        } catch (e: IOException) {
-            false
+        (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).let { connectivityManager ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)?.let {
+                    return it.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+                }
+            } else {
+                try {
+                    connectivityManager.activeNetworkInfo?.let {
+                        if (it.isConnected && it.isAvailable) {
+                            return true
+                        }
+                    }
+                } catch (e: Exception) {
+                }
+            }
         }
+        return false
     }
 
 /**

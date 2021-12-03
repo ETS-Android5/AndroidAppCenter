@@ -7,36 +7,46 @@ import android.content.Context
 import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
 import android.os.Build
 import android.text.Editable
 import android.text.Html
 import android.text.Spanned
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import java.io.IOException
 import kotlin.math.roundToInt
 
 /**
  * ToDo.. Return true if internet or wi-fi connection is working fine
  * <p>
  * Required permission
+ * <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
  * <uses-permission android:name="android.permission.INTERNET"/>
  *
  * @return true if you have the internet connection, or false if not.
  */
-inline val isOnline: Boolean
+@Suppress("DEPRECATION")
+inline val Context.isOnline: Boolean
     get() {
-        return try {
-            val command = "ping -c 1 google.com"
-            return Runtime.getRuntime().exec(command).waitFor() == 0
-        } catch (e: IOException) {
-            false
+        (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).let { connectivityManager ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)?.let {
+                    return it.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+                }
+            } else {
+                try {
+                    connectivityManager.activeNetworkInfo?.let {
+                        if (it.isConnected && it.isAvailable) {
+                            return true
+                        }
+                    }
+                } catch (e: Exception) {
+                }
+            }
         }
+        return false
     }
 
 //<editor-fold desc="For View Data">

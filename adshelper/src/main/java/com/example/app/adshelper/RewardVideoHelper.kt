@@ -78,7 +78,7 @@ object RewardVideoHelper {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
                     Log.i(
                         TAG,
-                        "onAdFailedToLoad: RewardVideo, Ad failed to load : ${adError.responseInfo}"
+                        "onAdFailedToLoad: RewardVideo, Ad failed to load -> \nresponseInfo::${adError.responseInfo}\nErrorCode::${adError.code}"
                     )
                     lRewardedAd = null
                     fListener.onAdFailed()

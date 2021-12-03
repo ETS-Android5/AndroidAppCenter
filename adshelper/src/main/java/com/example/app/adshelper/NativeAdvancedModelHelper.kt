@@ -1,16 +1,13 @@
 package com.example.app.adshelper
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.annotation.NonNull
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.app.adshelper.widgets.BlurDrawable
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
@@ -25,6 +22,8 @@ import com.google.android.gms.ads.nativead.NativeAdView
 class NativeAdvancedModelHelper(private val mContext: Context) :
     AdMobAdsListener {
 
+    private val TAG = "Admob_" + javaClass.simpleName
+
     companion object {
         val getNativeAd: NativeAd?
             get() {
@@ -36,10 +35,11 @@ class NativeAdvancedModelHelper(private val mContext: Context) :
         }
     }
 
+    private var mCloseTimer: AdsCloseTimer? = null
+
     private var isAdClicked: Boolean = false
     private var isAdOwnerPause: Boolean = false
 
-    private val TAG = "Admob_" + javaClass.simpleName
 
     private var mSize: NativeAdsSize = NativeAdsSize.Medium
     private var mLayout: FrameLayout = FrameLayout(mContext)
@@ -47,57 +47,6 @@ class NativeAdvancedModelHelper(private val mContext: Context) :
     private var mIsAddVideoOptions: Boolean = false
     private var mIsAdLoaded: (isNeedToRemoveCloseButton: Boolean) -> Unit = {}
     private var mOnClickAdClose: () -> Unit = {}
-
-    init {
-
-        ProcessLifecycleOwner.get().lifecycle.addObserver(object : DefaultLifecycleObserver {
-            
-            override fun onDestroy(owner: LifecycleOwner) {
-                super.onDestroy(owner)
-                Log.i(TAG, "onDestroy: ")
-
-                if (mContext is Activity && mContext.isFinishing) {
-                    Log.i(TAG, "onPause: isFinishing::${mContext.isFinishing}")
-
-                    if (NativeAdvancedHelper.mListenerList.contains(Pair(mContext, this@NativeAdvancedModelHelper))) {
-                        NativeAdvancedHelper.mListenerList.remove(Pair(mContext, this@NativeAdvancedModelHelper))
-                        Log.e(TAG, "onPause: Match & Remove ${NativeAdvancedHelper.mListenerList.contains(Pair(mContext, this@NativeAdvancedModelHelper))}")
-
-                        ProcessLifecycleOwner.get().lifecycle.removeObserver(this)
-                    }
-                }
-            }
-
-            override fun onResume(owner: LifecycleOwner) {
-                super.onResume(owner)
-                Log.i(TAG, "onResume: ")
-                if (isAdOwnerPause) {
-                    isAdOwnerPause = false
-                }
-                if (isAdClicked) {
-                    isAdClicked = false
-                    Log.i(TAG, "onResume: isAdClicked -> mSize::$mSize")
-
-                    mLayout.removeAllViews()
-
-                    loadNativeAdvancedAd(
-                        fSize = mSize,
-                        fLayout = mLayout,
-                        isNeedLayoutShow = mIsNeedLayoutShow,
-                        isAddVideoOptions = mIsAddVideoOptions,
-                        isAdLoaded = mIsAdLoaded,
-                        onClickAdClose = mOnClickAdClose
-                    )
-                }
-            }
-
-            override fun onPause(owner: LifecycleOwner) {
-                super.onPause(owner)
-                Log.i(TAG, "onPause: mContext::$mContext")
-                isAdOwnerPause = true
-            }
-        })
-    }
 
     /**
      * Call this method when you need to load your Native Advanced AD
@@ -129,6 +78,17 @@ class NativeAdvancedModelHelper(private val mContext: Context) :
         mIsAdLoaded = isAdLoaded
         mOnClickAdClose = onClickAdClose
 
+        mCloseTimer?.cancel()
+
+        mCloseTimer = AdsCloseTimer(
+            millisInFuture = 3000,
+            countDownInterval = 1000,
+            onFinish = {
+                onClickAdClose.invoke()
+            }
+        )
+        mCloseTimer?.start()
+
         NativeAdvancedHelper.loadNativeAdvancedAd(
             fContext = mContext,
             isAddVideoOptions = isAddVideoOptions,
@@ -145,6 +105,8 @@ class NativeAdvancedModelHelper(private val mContext: Context) :
         isAdLoaded: (isNeedToRemoveCloseButton: Boolean) -> Unit = {},
         onClickAdClose: () -> Unit
     ) {
+
+        mCloseTimer?.cancel()
 
         val adView = when (fSize) {
 
@@ -469,5 +431,20 @@ class NativeAdvancedModelHelper(private val mContext: Context) :
             isAdLoaded = mIsAdLoaded,
             onClickAdClose = mOnClickAdClose
         )
+    }
+
+    inner class AdsCloseTimer(
+        private val millisInFuture: Long,
+        countDownInterval: Long,
+        private val onFinish: () -> Unit
+    ) :
+        CountDownTimer(millisInFuture, countDownInterval) {
+        override fun onTick(millisUntilFinished: Long) {
+            Log.e(TAG, "onTick: Time::${(((millisInFuture - millisUntilFinished) / 1000) + 1)}")
+        }
+
+        override fun onFinish() {
+            onFinish.invoke()
+        }
     }
 }

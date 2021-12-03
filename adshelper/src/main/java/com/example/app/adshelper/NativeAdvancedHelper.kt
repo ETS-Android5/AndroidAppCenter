@@ -85,7 +85,7 @@ internal object NativeAdvancedHelper {
 
                 override fun onAdClosed() {
                     super.onAdClosed()
-                    if (isOnline) {
+                    if (fContext.isOnline) {
                         mNativeAd = null
                         for (lListener in mListenerList) {
                             Handler(Looper.getMainLooper()).postDelayed({

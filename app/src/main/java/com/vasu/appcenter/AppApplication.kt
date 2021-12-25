@@ -20,9 +20,9 @@ class AppApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
-//        VasuAdsConfig.with(this)
-//            .setAdmobInterstitialAdId("ca-app-pub-1168261283036318/6243240347")
-//            .initialize()
+        VasuAdsConfig.with(this)
+            .setAdmobInterstitialAdId("ca-app-pub-1168261283036318/6243240347")
+            .initialize()
 
         MobileAds.initialize(this) {
             Log.d(TAG, "onInitializationComplete.")

@@ -34,6 +34,10 @@ class SetAdsID(mContext: Context) : Serializable {
         mContext.getStringRes(R.string.admob_reward_video_ad_id)
     private var admobInterstitialAdRewardId: String =
         mContext.getStringRes(R.string.admob_interstitial_ad_reward_id)
+    private var admobOpenAdId: String =
+        mContext.getStringRes(R.string.admob_open_ad_id)
+
+    private var mIsEnable: Boolean = isOpenAdEnable
 
     private var mAppPackageName: String = ""
 
@@ -73,6 +77,18 @@ class SetAdsID(mContext: Context) : Serializable {
         this.admobInterstitialAdRewardId = fAdmobInterstitialAdRewardId
     }
 
+    @JvmName("setAdmobOpenAdId")
+    @NonNull
+    fun setAdmobOpenAdId(fAdmobOpenAdId: String) = this@SetAdsID.apply {
+        this.admobOpenAdId = fAdmobOpenAdId
+    }
+
+    @JvmName("isEnableOpenAd")
+    @NonNull
+    fun isEnableOpenAd(fIsEnable: Boolean) = this@SetAdsID.apply {
+        this.mIsEnable = fIsEnable
+    }
+
 
     @JvmName("initialize")
     fun initialize() {
@@ -82,5 +98,8 @@ class SetAdsID(mContext: Context) : Serializable {
         admob_native_advanced_ad_id = this.admobNativeAdvancedAdId
         admob_reward_video_ad_id = this.admobRewardVideoAdId
         admob_interstitial_ad_reward_id = this.admobInterstitialAdRewardId
+        admob_open_ad_id = this.admobOpenAdId
+        isOpenAdEnable = this.mIsEnable
     }
+
 }

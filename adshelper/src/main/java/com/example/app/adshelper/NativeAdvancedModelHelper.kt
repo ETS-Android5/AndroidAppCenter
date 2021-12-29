@@ -19,8 +19,7 @@ import com.google.android.gms.ads.nativead.NativeAdView
  * NativeAdvancedModel.kt - Simple class which has load and handle your multiple size Native Advanced AD data
  * @param mContext this is a reference to your activity or fragment context
  */
-class NativeAdvancedModelHelper(private val mContext: Context) :
-    AdMobAdsListener {
+class NativeAdvancedModelHelper(private val mContext: Context) : AdMobAdsListener {
 
     private val TAG = "Admob_" + javaClass.simpleName
 

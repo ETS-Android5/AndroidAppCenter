@@ -40,6 +40,8 @@ object RewardVideoHelper {
 
         fListener.onStartToLoadRewardVideoAd()
 
+        Log.e(TAG, "loadRewardVideoAd: adUnitId::${admob_reward_video_ad_id ?: fContext.getStringRes(R.string.admob_reward_video_ad_id)}")
+
         RewardedAd.load(
             fContext,
             admob_reward_video_ad_id ?: fContext.getStringRes(R.string.admob_reward_video_ad_id),
@@ -165,10 +167,12 @@ object RewardVideoHelper {
      * Use of this Method
      * activity.showRewardVideoAd()
      */
-    fun FragmentActivity.showRewardVideoAd() {
+    fun FragmentActivity.showRewardVideoAd(isAdShow: () -> Unit = {}) {
         isUserEarnedReward = false
 
         if (isNeedToShowAds && isRewardVideoAdLoaded) {
+            isAdShow.invoke()
+            isAnyAdOpen = true
             mRewardedAd?.show(this) {
                 isUserEarnedReward = true
             }

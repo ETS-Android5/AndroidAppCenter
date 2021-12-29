@@ -161,6 +161,7 @@ object InterstitialRewardHelper {
         isUserEarnedReward = false
 
         if (isNeedToShowAds && isRewardedInterstitialAdLoaded) {
+            isAnyAdOpen = true
             mRewardedInterstitialAd?.show(this) {
                 isUserEarnedReward = true
             }

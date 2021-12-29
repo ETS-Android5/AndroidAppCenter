@@ -15,7 +15,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1cc07c26-ec47-4ca6-9f61-25a30314551f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/jitpack.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_extensions_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_4_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_multidex_multidex_2_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/appcenter/AppCenter.appcenter.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/openad/AppOpenApplication.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/openad/OpenAdHelper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/openad/OpenAdManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vasu/appcenter/CommonMethods.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/vasu/appcenter/SplashActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/testing.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -24,18 +36,53 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0.2/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_multidex_multidex_2_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_annotations_4_12_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_annotations_4_12_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_disklrucache_4_12_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_disklrucache_4_12_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_12_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_12_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_12_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_12_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_intuit_sdp_sdp_android_1_0_6_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_intuit_sdp_sdp_android_1_0_6_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_intuit_ssp_ssp_android_1_0_6_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_intuit_ssp_ssp_android_1_0_6_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_retrofit_retrofit2_kotlin_coroutines_adapter_0_9_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_retrofit_retrofit2_kotlin_coroutines_adapter_0_9_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_logging_interceptor_4_9_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_logging_interceptor_4_9_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_4_9_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_4_9_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_2_8_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_2_8_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_converter_gson_2_9_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_converter_gson_2_9_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_9_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_9_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/adshelper/AppCenter.adshelper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/adshelper/AppCenter.adshelper.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/AppCenter.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/AppCenter.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/base/AppCenter.base.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/base/AppCenter.base.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/newAppCenter/AppCenter.appcenter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/newAppCenter/AppCenter.appcenter.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/newAppCenter/AppCenter.appcenter.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/adshelper/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/AdMobAdsListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/AdMobAdsListener.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/AdMobAdsUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/AdMobAdsUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/GiftIconHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/GiftIconHelper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/InterstitialAdHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/InterstitialAdHelper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/InterstitialRewardHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/InterstitialRewardHelper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/NativeAdvancedHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/NativeAdvancedHelper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/NativeAdvancedModelHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/NativeAdvancedModelHelper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/RewardVideoHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/RewardVideoHelper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/VasuAdsConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/VasuAdsConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/dialogs/FullScreenNativeAdDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper/dialogs/FullScreenNativeAdDialog.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adshelper/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/adshelper/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vasu/appcenter/AppApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vasu/appcenter/AppApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appcenter/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/appcenter/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/base/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/vasu/appcenter/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/vasu/appcenter/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +118,7 @@
         <option value="Kotlin Class" />
         <option value="resourceFile" />
         <option value="Kotlin File" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -103,7 +151,7 @@
     <property name="android-custom-view/Volumes/Extra/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/java/com/example/latest/vasu/newappcenter/widgets/TopsMoreAppsView.kt_SELECTED" value="TopsMoreAppsView" />
     <property name="android-custom-view/Volumes/Extra/sdk/sources/android-30/android/view/View.java_SELECTED" value="View" />
     <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/vasu/appcenter" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -114,11 +162,11 @@
       <recent name="com.vasu.appcenter" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/vasu/appcenter" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/adshelper/src/main/java/com/example/app/adshelper" />
       <recent name="$PROJECT_DIR$/adshelper/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-nodpi" />
-      <recent name="$PROJECT_DIR$/adshelper/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/src/main/assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
@@ -129,7 +177,11 @@
     <key name="android.template.-634144195">
       <recent name="com.vasu.appcenter" />
     </key>
+    <key name="android.template.1837461369">
+      <recent name="com.vasu.appcenter" />
+    </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.example.app.adshelper.openad" />
       <recent name="com.example.app.adshelper" />
       <recent name="com.example.app.adshelper.dialogs" />
     </key>
@@ -311,7 +363,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638525120262</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Testing For Make Dependency">
+      <created>1640405655193</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1640405655193</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -336,6 +395,7 @@
     <MESSAGE value="Native Ads Layout Change" />
     <MESSAGE value="Final Native Ads Layout Change" />
     <MESSAGE value="Dismiss Full Screen NativeAd Dialog After 3 Sec if Ad Not Load" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dismiss Full Screen NativeAd Dialog After 3 Sec if Ad Not Load" />
+    <MESSAGE value="Testing For Make Dependency" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing For Make Dependency" />
   </component>
 </project>

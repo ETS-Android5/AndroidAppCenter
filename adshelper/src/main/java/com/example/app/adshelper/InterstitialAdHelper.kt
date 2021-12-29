@@ -33,7 +33,7 @@ object InterstitialAdHelper {
 
     private var mIsShowFullScreenNativeAd: Boolean = true
 
-    internal fun loadAd(@NonNull fContext: Context, @NonNull fListener: AdMobAdsListener) {
+    fun loadAd(@NonNull fContext: Context, @NonNull fListener: AdMobAdsListener) {
 
         var lInterstitialAd: InterstitialAd?
 
@@ -145,9 +145,12 @@ object InterstitialAdHelper {
             }
         }
 
+//        mInterstitialAdMob = null
+
         mIsAnyAdShow = if (isNeedToShowAds && !mIsAnyAdShow) {
             if (mIsAdMobAdLoaded && mInterstitialAdMob != null) {
                 mInterstitialAdMob?.show(this)
+                isAnyAdOpen = true
                 isInterstitialAdShow = true
                 Log.i(TAG, "isShowInterstitialAd: Show Interstitial Ad")
                 true

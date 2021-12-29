@@ -2,6 +2,7 @@
 
 package com.example.app.adshelper
 
+import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardedAd
@@ -57,6 +58,13 @@ interface AdMobAdsListener {
      * @param rewardedInterstitialAd it's a reference to your Rewarded Interstitial Ad
      */
     fun onRewardInterstitialAdLoaded(rewardedInterstitialAd: RewardedInterstitialAd) {}
+
+    /**
+     * This method is called when your AppOpenAd data was loaded successfully
+     *
+     * @param appOpenAd it's a reference to your AppOpenAd
+     */
+    fun onAppOpenAdLoaded(appOpenAd: AppOpenAd) {}
 
     /**
      * This method is called when your Reward Video AD was closed after successfully showing to the user

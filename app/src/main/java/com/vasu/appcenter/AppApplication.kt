@@ -1,14 +1,14 @@
 package com.vasu.appcenter
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import androidx.multidex.MultiDex
-import androidx.multidex.MultiDexApplication
 import com.example.app.adshelper.VasuAdsConfig
-import com.example.app.adshelper.setTestDeviceIds
-import com.google.android.gms.ads.MobileAds
+import com.example.app.adshelper.openad.AppOpenApplication
+import com.example.latest.vasu.newappcenter.MoreAppsActivity
 
-class AppApplication : MultiDexApplication() {
+class AppApplication : AppOpenApplication(), AppOpenApplication.AppLifecycleListener {
 
     private val TAG = javaClass.simpleName
 
@@ -20,13 +20,35 @@ class AppApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
+        setAppLifecycleListener(this)
+
         VasuAdsConfig.with(this)
-            .setAdmobInterstitialAdId("ca-app-pub-1168261283036318/6243240347")
+            .isEnableOpenAd(true)
             .initialize()
 
-        MobileAds.initialize(this) {
-            Log.d(TAG, "onInitializationComplete.")
-            setTestDeviceIds()
+        initMobileAds(isAppInTesting = true)
+    }
+
+    override fun onResumeApp(fCurrentActivity: Activity): Boolean {
+        val isNeedToShowAd: Boolean = when {
+            fCurrentActivity is SplashActivity -> {
+                Log.d(TAG, "onResumeApp: fCurrentActivity is SplashActivity")
+                false
+            }
+
+            fCurrentActivity is MoreAppsActivity -> {
+                Log.d(TAG, "onResumeApp: fCurrentActivity is MoreAppsActivity")
+                false
+            }
+
+            this@AppApplication.isNeedToAdShow -> {
+                true
+            }
+            else -> {
+                false
+            }
         }
+
+        return isNeedToShowAd
     }
 }

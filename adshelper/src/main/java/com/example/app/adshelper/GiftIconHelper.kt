@@ -32,9 +32,9 @@ object GiftIconHelper {
 
         fivGiftIcon.gone
         fivBlastIcon.gone
-        
+
         loadNewInterstitialAd(fContext, fivGiftIcon, fivBlastIcon)
-        
+
         fivGiftIcon.setOnClickListener {
             fivGiftIcon.gone
             fivBlastIcon.visible
@@ -45,10 +45,9 @@ object GiftIconHelper {
                 }
 
                 override fun onAnimationEnd(animation: Animator?) {
-                    if (!fContext.isNewInterstitialAdLoad) {
-                        fivGiftIcon.gone
-                        fivBlastIcon.gone
-                    }
+                    fContext.isNewInterstitialAdLoad
+                    fivGiftIcon.gone
+                    fivBlastIcon.gone
                 }
 
                 override fun onAnimationCancel(animation: Animator?) {
@@ -107,6 +106,7 @@ object GiftIconHelper {
         get() {
             return if (isInterstitialAdLoaded && interstitial != null) {
                 isInterstitialAdShow = true
+                isAnyAdOpen = true
                 interstitial?.show(this)
                 true
             } else {

@@ -15,8 +15,11 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 
 
-var isInterstitialAdShow = false
 var isNeedToShowAds = true
+var isAppForeground = false
+
+internal var isInterstitialAdShow = false
+internal var isAnyAdOpen = false
 
 internal var admob_app_id: String? = null
 internal var admob_banner_ad_id: String? = null
@@ -24,6 +27,8 @@ internal var admob_interstitial_ad_id: String? = null
 internal var admob_native_advanced_ad_id: String? = null
 internal var admob_reward_video_ad_id: String? = null
 internal var admob_interstitial_ad_reward_id: String? = null
+internal var admob_open_ad_id: String? = null
+internal var isOpenAdEnable: Boolean = true
 
 /**
  * Extension method to Get String resource for Context.
@@ -80,7 +85,7 @@ internal inline val View.gone: View
  * @return true if you have the internet connection, or false if not.
  */
 @Suppress("DEPRECATION")
-inline val Context.isOnline: Boolean
+internal inline val Context.isOnline: Boolean
     get() {
         (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).let { connectivityManager ->
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -105,13 +110,14 @@ inline val Context.isOnline: Boolean
  * Extension method for add AdMob Ads test devise id's
  *
  * Find This Log in your logcat for get your devise test id
- * I/Ads: Use RequestConfiguration.Builder.setTestDeviceIds(Arrays.asList("33BE2250B43518CCDA7DE426D04EE231"))
+ * I/Ads: Use RequestConfiguration.Builder.setTestDeviceIds("TEST_DEVICE_ID","TEST_DEVICE_ID")
  */
-fun setTestDeviceIds() {
+internal fun setTestDeviceIds(vararg fDeviceId: String) {
 
-    val lTestDeviceIds = listOf(
-        AdRequest.DEVICE_ID_EMULATOR
-    )
+    val lTestDeviceIds: ArrayList<String> = ArrayList()
+    lTestDeviceIds.add(AdRequest.DEVICE_ID_EMULATOR)
+    lTestDeviceIds.addAll(fDeviceId)
+
     val lConfiguration = RequestConfiguration.Builder().setTestDeviceIds(lTestDeviceIds).build()
 
     MobileAds.setRequestConfiguration(lConfiguration)

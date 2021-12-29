@@ -26,9 +26,9 @@ class FullScreenNativeAdDialog(
         @SuppressLint("StaticFieldLeak")
         private var testDialog: FullScreenNativeAdDialog? = null
 
-        val isFullScreenNativeAdDialogShowing: Boolean
+        val isDialogShowing: Boolean
             get() {
-                return testDialog != null && testDialog!!.isShowing
+                return testDialog != null && testDialog?.isShowing ?: false
             }
     }
 
@@ -62,7 +62,7 @@ class FullScreenNativeAdDialog(
         }
 
         mBinding.ivCloseAd.setOnClickListener {
-            if (this.isShowing) {
+            if (this != null && this.isShowing) {
                 this.dismiss()
             }
             onDialogDismiss.invoke()
@@ -73,7 +73,7 @@ class FullScreenNativeAdDialog(
         if (NativeAdvancedModelHelper.getNativeAd != null && !activity.isFinishing && !isShowing && activity.isOnline) {
             Log.i(TAG, "showFullScreenNativeAdDialog: ")
 
-            mBinding.ivCloseAd.visibility = View.GONE
+            mBinding.ivCloseAd.visible
 
             NativeAdvancedModelHelper(activity).loadNativeAdvancedAd(
                 fSize = NativeAdsSize.FullScreen,
@@ -81,9 +81,9 @@ class FullScreenNativeAdDialog(
                 isAddVideoOptions = checked,
                 isAdLoaded = { isNeedToRemoveCloseButton ->
                     if (!isNeedToRemoveCloseButton) {
-                        mBinding.ivCloseAd.visibility = View.VISIBLE
+                        mBinding.ivCloseAd.visible
                     } else {
-                        mBinding.ivCloseAd.visibility = View.GONE
+                        mBinding.ivCloseAd.gone
                     }
                     mBinding.flNativeAdPlaceHolder.visible
                 },
@@ -92,6 +92,7 @@ class FullScreenNativeAdDialog(
                 }
             )
             testDialog = this
+            isInterstitialAdShow = true
             show()
         } else if (!activity.isOnline) {
             Toast.makeText(activity, "check your internet connection", Toast.LENGTH_SHORT).show()

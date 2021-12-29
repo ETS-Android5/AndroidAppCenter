@@ -167,9 +167,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
                 FullScreenNativeAdDialog(activity = mActivity).showFullScreenNativeAdDialog(mBinding.adsSwitch.isChecked)
             }
             mBinding.showMoreAppView -> {
-//                mBinding.svAds.gone
-//                mBinding.moreAppView.visible
-
                 launchActivity(getActivityIntent<SecondActivity> { putBoolean("is_add_video_options", mBinding.adsSwitch.isChecked) })
             }
         }

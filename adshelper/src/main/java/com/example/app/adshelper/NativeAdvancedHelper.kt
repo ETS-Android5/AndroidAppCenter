@@ -83,6 +83,11 @@ internal object NativeAdvancedHelper {
 
             val adLoader = builder.withAdListener(object : AdListener() {
 
+                override fun onAdClicked() {
+                    super.onAdClicked()
+                    isAnyAdOpen = true
+                }
+
                 override fun onAdClosed() {
                     super.onAdClosed()
                     if (fContext.isOnline) {

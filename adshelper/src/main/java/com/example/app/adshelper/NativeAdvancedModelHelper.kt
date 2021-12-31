@@ -436,8 +436,7 @@ class NativeAdvancedModelHelper(private val mContext: Context) : AdMobAdsListene
         private val millisInFuture: Long,
         countDownInterval: Long,
         private val onFinish: () -> Unit
-    ) :
-        CountDownTimer(millisInFuture, countDownInterval) {
+    ) : CountDownTimer(millisInFuture, countDownInterval) {
         override fun onTick(millisUntilFinished: Long) {
             Log.e(TAG, "onTick: Time::${(((millisInFuture - millisUntilFinished) / 1000) + 1)}")
         }

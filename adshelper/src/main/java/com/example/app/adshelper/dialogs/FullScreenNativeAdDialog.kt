@@ -41,14 +41,14 @@ class FullScreenNativeAdDialog(
         window?.let {
 
             it.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            it.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+//            it.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 
             ///////////   Animation  ////////
             val lp = WindowManager.LayoutParams()
             lp.copyFrom(it.attributes)
             lp.width = WindowManager.LayoutParams.MATCH_PARENT
             lp.height = WindowManager.LayoutParams.MATCH_PARENT
-            lp.gravity = Gravity.BOTTOM
+            lp.gravity = Gravity.CENTER
             lp.windowAnimations = R.style.dialog_animation
             it.attributes = lp
 

@@ -41,7 +41,9 @@ class OpenAdManager(
 
     }
 
-    override fun onActivityPaused(activity: Activity) {}
+    override fun onActivityPaused(activity: Activity) {
+        Log.e(TAG, "onActivityPaused: ")
+    }
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
     //</editor-fold>

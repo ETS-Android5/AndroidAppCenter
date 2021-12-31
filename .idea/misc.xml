@@ -20,11 +20,15 @@
         <entry key="adshelper/src/main/res/layout/layout_google_native_ad_medium.xml" value="0.33" />
         <entry key="adshelper/src/main/res/layout/layout_google_native_ad_medium_old.xml" value="0.33697916666666666" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3572916666666667" />
+        <entry key="app/src/main/res/drawable/img_border1.xml" value="0.3572916666666667" />
+        <entry key="app/src/main/res/drawable/img_border3.xml" value="0.3572916666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33697916666666666" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.33697916666666666" />
+        <entry key="app/src/main/res/layout/activity_native_ads.xml" value="0.33697916666666666" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.31979166666666664" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.33697916666666666" />
         <entry key="app/src/main/res/layout/all_screen_header.xml" value="0.33697916666666666" />
+        <entry key="app/src/main/res/layout/dialog_exit.xml" value="0.33697916666666666" />
         <entry key="app/src/main/res/layout/testing.xml" value="0.33697916666666666" />
         <entry key="app/src/main/res/layout/view_gift_ad.xml" value="0.33697916666666666" />
         <entry key="appcenter/src/main/res/layout/activity_more_apps.xml" value="0.1" />

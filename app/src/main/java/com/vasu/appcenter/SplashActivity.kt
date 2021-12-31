@@ -2,13 +2,13 @@ package com.vasu.appcenter
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import com.example.app.adshelper.openad.OpenAdHelper
 import com.example.app.adshelper.openad.OpenAdHelper.isShowOpenAd
 import com.example.app.base.BaseBindingActivity
 import com.example.app.base.utils.isOnline
+import com.example.latest.vasu.newappcenter.utils.getBoolean
 import com.vasu.appcenter.databinding.ActivitySplashBinding
 
 @SuppressLint("CustomSplashScreen")
@@ -46,11 +46,13 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
 
             startTimer(3000)
 
-            OpenAdHelper.loadOpenAd(mActivity, onAdLoad = {
-                Log.e(TAG, "onOpenAdLoad: ")
-                mTimer?.cancel()
-                openActivityWithAd()
-            })
+            if (this.getBoolean(IS_OPEN_ADS_ENABLE, true)) {
+                OpenAdHelper.loadOpenAd(mActivity, onAdLoad = {
+                    Log.e(TAG, "onOpenAdLoad: ")
+                    mTimer?.cancel()
+                    openActivityWithAd()
+                })
+            }
 
         } else {
             startTimer(1000)
@@ -96,7 +98,7 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
         mTimer?.cancel()
     }
 
-    inner class AdsCountDownTimer(private val millisInFuture: Long, countDownInterval: Long) :
+    private inner class AdsCountDownTimer(private val millisInFuture: Long, countDownInterval: Long) :
         CountDownTimer(millisInFuture, countDownInterval) {
         override fun onTick(millisUntilFinished: Long) {
             Log.e(TAG, "onTick: Time::${(((millisInFuture - millisUntilFinished) / 1000) + 1)}")

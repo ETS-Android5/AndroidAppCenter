@@ -1,9 +1,20 @@
 package com.vasu.appcenter
 
+import android.Manifest
+import android.app.Dialog
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.akshay.harsoda.permission.helper.AksPermission
+import com.akshay.harsoda.permission.helper.utiles.OnAlertButtonClickListener
+import com.akshay.harsoda.permission.helper.utiles.getPermissionName
+import com.akshay.harsoda.permission.helper.utiles.showAlert
 import com.example.app.adshelper.*
 import com.example.app.adshelper.InterstitialAdHelper.isShowInterstitialAd
 import com.example.app.adshelper.InterstitialRewardHelper.isShowRewardedInterstitialAd
@@ -12,17 +23,16 @@ import com.example.app.adshelper.RewardVideoHelper.isShowRewardVideoAd
 import com.example.app.adshelper.RewardVideoHelper.showRewardVideoAd
 import com.example.app.adshelper.dialogs.FullScreenNativeAdDialog
 import com.example.app.base.BaseBindingActivity
-import com.example.app.base.utils.getDrawableRes
-import com.example.app.base.utils.gone
-import com.example.app.base.utils.visible
+import com.example.app.base.utils.*
 import com.example.latest.vasu.newappcenter.MoreApps
+import com.example.latest.vasu.newappcenter.utils.getBoolean
+import com.example.latest.vasu.newappcenter.utils.save
 import com.vasu.appcenter.databinding.ActivityMainBinding
 
 
 class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
 
-    private var isFirstTime: Boolean = true
-
+    private var mExitDialog: ExitDialog? = null
 
     override fun getActivityContext(): AppCompatActivity {
         return this@MainActivity
@@ -38,48 +48,50 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
         InterstitialAdHelper.loadInterstitialAd(fContext = mActivity)
         RewardVideoHelper.loadRewardVideoAd(fContext = mActivity)
         InterstitialRewardHelper.loadRewardedInterstitialAd(fContext = mActivity)
-
-        mBinding.adsSwitch.setOnCheckedChangeListener { _, isChecked ->
-            Log.e(TAG, "initAds: setOnCheckedChangeListener isChecked::$isChecked")
-            if (NativeAdvancedModelHelper.getNativeAd != null) {
-                NativeAdvancedModelHelper.destroy()
-            }
-
-            isFirstTime = true
-
-            NativeAdvancedModelHelper(mActivity).loadNativeAdvancedAd(
-                NativeAdsSize.Big,
-                mBinding.flNativeAdPlaceHolderBig,
-                isAddVideoOptions = isChecked,
-                isAdLoaded = {
-                    if (isFirstTime) {
-                        isFirstTime = false
-                        NativeAdvancedModelHelper(mActivity).loadNativeAdvancedAd(
-                            NativeAdsSize.Medium,
-                            mBinding.flNativeAdPlaceHolderMedium,
-                            isAddVideoOptions = isChecked,
-                        )
-                    }
-                }
-            )
-        }
-
-        GiftIconHelper.loadGiftAd(
-            fContext = mActivity,
-            fivGiftIcon = mBinding.layoutHeader.layoutGiftAd.giftAdIcon,
-            fivBlastIcon = mBinding.layoutHeader.layoutGiftAd.giftBlastAdIcon
-        )
     }
 
     override fun initView() {
         super.initView()
 
         mBinding.layoutHeader.ivHeaderBack.setImageDrawable(mActivity.getDrawableRes(R.drawable.ic_new_header_back))
-        mBinding.layoutHeader.ivHeaderRightIcon.gone
+        mBinding.layoutHeader.ivHeaderRightIcon.setImageDrawable(mActivity.getDrawableRes(R.drawable.ic_share_blue))
+
+        mExitDialog = ExitDialog(mActivity)
     }
 
-    override fun initViewAction() {
-        super.initViewAction()
+    override fun initViewListener() {
+        super.initViewListener()
+
+        mBinding.openAdsSwitch.isChecked = mActivity.getBoolean(IS_OPEN_ADS_ENABLE, true)
+
+        mBinding.adsSwitch.setOnCheckedChangeListener { _, _ ->
+            if (NativeAdvancedModelHelper.getNativeAd != null) {
+                NativeAdvancedModelHelper.destroy()
+            }
+        }
+
+        mBinding.openAdsSwitch.setOnCheckedChangeListener { _, isChecked ->
+            mActivity.save(IS_OPEN_ADS_ENABLE, isChecked)
+            Handler(Looper.getMainLooper()).postDelayed({
+                Log.e(TAG, "initViewListener: IS_OPEN_ADS_ENABLE::${mActivity.getBoolean(IS_OPEN_ADS_ENABLE, true)}")
+                triggerRebirth(mActivity)
+            }, 500)
+        }
+
+        mBinding.adsSwitch.isChecked = true
+
+        setClickListener(
+            mBinding.layoutHeader.ivHeaderBack,
+            mBinding.layoutHeader.ivHeaderRightIcon,
+            mBinding.showInterstitialAds,
+            mBinding.showFullScreenNativeAd,
+            mBinding.showRewardVideoAds,
+            mBinding.showRewardInterstitialAds,
+            mBinding.showMoreApp,
+            mBinding.showNativeAds,
+            mBinding.showRunTimePermission,
+            mBinding.showDialogs,
+        )
 
         //<editor-fold desc="Reward Video Ad Work">
         mBinding.showRewardVideoAds.alpha = 0.5f
@@ -124,25 +136,30 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
         //</editor-fold>
     }
 
-    override fun initViewListener() {
-        super.initViewListener()
-
-        mBinding.adsSwitch.isChecked = true
-
-        setClickListener(
-            mBinding.layoutHeader.ivHeaderBack,
-            mBinding.showInterstitialAds,
-            mBinding.showRewardVideoAds,
-            mBinding.showRewardInterstitialAds,
-            mBinding.showFullScreenNativeAd,
-            mBinding.showMoreAppView,
-        )
-    }
-
 
     override fun onClick(v: View) {
         when (v) {
             mBinding.layoutHeader.ivHeaderBack -> {
+                onBackPressed()
+            }
+            mBinding.layoutHeader.ivHeaderRightIcon -> {
+                shareApp("hello")
+            }
+            mBinding.showInterstitialAds -> {
+                mActivity.isShowInterstitialAd { isShowFullScreenAd ->
+                    Log.e(TAG, "onClick: isShowFullScreenAd::$isShowFullScreenAd")
+                }
+            }
+            mBinding.showFullScreenNativeAd -> {
+                FullScreenNativeAdDialog(activity = mActivity).showFullScreenNativeAdDialog(mBinding.adsSwitch.isChecked)
+            }
+            mBinding.showRewardVideoAds -> {
+                mActivity.showRewardVideoAd()
+            }
+            mBinding.showRewardInterstitialAds -> {
+                mActivity.showRewardedInterstitialAd()
+            }
+            mBinding.showMoreApp -> {
                 MoreApps.with(mActivity)
                     .setAppPackageName("com.vehicle.rto.vahan.status.information.register")
                     .setTextColor(Color.BLUE)
@@ -152,32 +169,96 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
                     .setShareMessage("abc")
                     .launch()
             }
-            mBinding.showInterstitialAds -> {
-                mActivity.isShowInterstitialAd { isShowFullScreenAd ->
-                    Log.e(TAG, "onClick: isShowFullScreenAd::$isShowFullScreenAd")
+            mBinding.showNativeAds -> {
+                mActivity.isShowInterstitialAd { _ ->
+                    launchActivity(getActivityIntent<NativeAdsActivity> { putBoolean("is_add_video_options", mBinding.adsSwitch.isChecked) })
                 }
             }
-            mBinding.showRewardVideoAds -> {
-                mActivity.showRewardVideoAd()
+            mBinding.showRunTimePermission -> {
+                isInterstitialAdShow = true
+                AksPermission.with(mActivity)
+                    .permissions(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.RECORD_AUDIO
+                    )
+                    .isShowDefaultSettingDialog(false)
+                    .request(
+                        onGrantedResult = {
+                            isInterstitialAdShow = false
+                        },
+                        onDeniedResult = {
+                            isInterstitialAdShow = false
+                        },
+                        onPermanentlyDeniedResult = {
+                            isInterstitialAdShow = false
+                            doNotAskAgain(it.toMutableList().getPermissionName().toString())
+                        }
+                    )
             }
-            mBinding.showRewardInterstitialAds -> {
-                mActivity.showRewardedInterstitialAd()
-            }
-            mBinding.showFullScreenNativeAd -> {
-                FullScreenNativeAdDialog(activity = mActivity).showFullScreenNativeAdDialog(mBinding.adsSwitch.isChecked)
-            }
-            mBinding.showMoreAppView -> {
-                launchActivity(getActivityIntent<SecondActivity> { putBoolean("is_add_video_options", mBinding.adsSwitch.isChecked) })
+            mBinding.showDialogs -> {
+                AlertDialog.Builder(mActivity)
+                    .setTitle("Hello")
+                    .setMessage("Hello")
+                    .setOnDismissListener {
+                        isInterstitialAdShow = false
+                    }
+                    .create()
+                    .show()
+                isInterstitialAdShow = true
             }
         }
     }
 
+    private fun Context.shareApp(msg: String?) {
+        try {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_TEXT, msg)
+            startActivity(Intent.createChooser(intent, "Share Via"))
+        } catch (e: java.lang.Exception) {
+            Log.e("shareApp", "shareApp: $e")
+        }
+    }
+
+    private fun doNotAskAgain(fMessage: String) {
+        isInterstitialAdShow = true
+        mActivity.showAlert(
+            fTitle = mActivity.getStringRes(R.string.dialog_title),
+            fMessage = mActivity.getStringRes(R.string.dialog_messages, fMessage),
+            fPositiveText = mActivity.getStringRes(android.R.string.ok),
+            fNegativeText = mActivity.getStringRes(android.R.string.cancel),
+            fTitleColor = Color.BLACK,
+            fMessageColor = Color.BLACK,
+            fPositiveColor = Color.BLACK,
+            fNegativeColor = Color.BLACK,
+            fButtonClickListener = object : OnAlertButtonClickListener {
+                override fun onPositiveButtonClick() {
+                    mActivity.packageName?.let {
+                        mActivity.startActivity(AksPermission.appDetailSettingsIntent(it))
+                    }
+                    isInterstitialAdShow = false
+                }
+
+                override fun onNegativeButtonClick() {
+                    super.onNegativeButtonClick()
+                    isInterstitialAdShow = false
+                }
+            }
+        )
+    }
+
+
     override fun onBackPressed() {
-        if (mBinding.moreAppView.visibility == View.VISIBLE) {
-            mBinding.svAds.visible
-            mBinding.moreAppView.gone
-        } else {
-            super.onBackPressed()
+        if (mExitDialog != null) {
+            mExitDialog?.let {
+                it.showExitDialog(isAddVideoOptions = mBinding.adsSwitch.isChecked) {
+                    mActivity.isShowInterstitialAd(isBackAds = true) { _ ->
+                        launchActivity(getActivityIntent<SecondActivity>())
+                    }
+                }
+            }
         }
     }
 }

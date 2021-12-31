@@ -4,12 +4,12 @@ plugins {
     id 'kotlin-kapt'
 }
 android {
-    compileSdk 31
+    compileSdk 30
 
     defaultConfig {
         applicationId "com.vasu.appcenter"
         minSdk 16
-        targetSdk 31
+        targetSdk 30
         versionCode 2
         versionName "1.1"
         multiDexEnabled true
@@ -39,8 +39,12 @@ android {
 
 dependencies {
 
-    implementation "androidx.core:core-ktx:1.7.0"
-    implementation 'androidx.appcompat:appcompat:1.4.0'
+//    implementation "androidx.core:core-ktx:1.7.0"
+//    implementation 'androidx.appcompat:appcompat:1.4.0'
+
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     testImplementation 'junit:junit:4.13.2'
@@ -64,6 +68,10 @@ dependencies {
     // Lottie Animation
     implementation "com.airbnb.android:lottie:$lottie_version"
 
-//    implementation 'com.github.vickypathak123:AndroidAppCenter:1.0.8'
-//    implementation 'com.github.JoelKanyi:KenyanCounties:1.0.0'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    //<editor-fold desc="Run-Time Permission">
+    implementation 'com.github.AkshayHarsoda:AksPermission-Android:v1.1.0'
+    //</editor-fold>
 }

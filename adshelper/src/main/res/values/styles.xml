@@ -1,5 +1,10 @@
 <resources>
 
+    <style name="rating_bar_theme_main" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#AAAAAA</item>
+        <item name="colorControlActivated">?attr/native_ads_main_color</item>
+    </style>
+
     <style name="rating_bar_theme" parent="Theme.AppCompat">
         <item name="colorControlNormal">#AAAAAA</item>
         <item name="colorControlActivated">#F2B200</item>
@@ -12,8 +17,8 @@
     </style>
 
     <style name="dialog_animation">
-        <item name="android:windowEnterAnimation">@anim/dialog_slide_up</item>
-        <item name="android:windowExitAnimation">@anim/dialog_slide_bottom</item>
+        <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
     </style>
 
     <style name="WhiteAccent" parent="Widget.AppCompat.ProgressBar">

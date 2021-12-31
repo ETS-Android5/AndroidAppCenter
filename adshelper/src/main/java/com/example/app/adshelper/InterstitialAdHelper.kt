@@ -134,24 +134,27 @@ object InterstitialAdHelper {
      *
      * @param onAdClosed this is a call back of your ad close, it will call also if your ad was not showing to the user
      */
-    fun FragmentActivity.isShowInterstitialAd(@NonNull onAdClosed: (isShowFullScreenAd: Boolean) -> Unit) {
+    fun FragmentActivity.isShowInterstitialAd(isBackAds: Boolean = false, @NonNull onAdClosed: (isShowFullScreenAd: Boolean) -> Unit) {
         mListener = object : AdMobAdsListener {
             override fun onAdClosed(isShowFullScreenAd: Boolean) {
                 Log.i(TAG, "onAdClosed: ")
                 isInterstitialAdShow = false
                 mIsAnyAdShow = false
                 onAdClosed.invoke(isShowFullScreenAd)
-                loadInterstitialAd(this@isShowInterstitialAd)
+                if (!isBackAds) {
+                    Log.e(TAG, "onAdClosed: Load New Ad")
+                    loadInterstitialAd(this@isShowInterstitialAd)
+                }
             }
         }
 
 //        mInterstitialAdMob = null
 
-        mIsAnyAdShow = if (isNeedToShowAds && !mIsAnyAdShow) {
+        mIsAnyAdShow = if (!isInterstitialAdShow && isNeedToShowAds && !mIsAnyAdShow) {
             if (mIsAdMobAdLoaded && mInterstitialAdMob != null) {
-                mInterstitialAdMob?.show(this)
                 isAnyAdOpen = true
                 isInterstitialAdShow = true
+                mInterstitialAdMob?.show(this)
                 Log.i(TAG, "isShowInterstitialAd: Show Interstitial Ad")
                 true
             } else {

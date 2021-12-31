@@ -6,8 +6,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+<!--        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>-->
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+
+        <item name="native_ads_main_color">@color/colorAccent</item>
+<!--        <item name="native_ads_main_color">@android:color/holo_red_light</item>-->
+        <item name="native_ads_label_text_color">@android:color/white</item>
+        <item name="native_ads_background_color">@android:color/white</item>
+        <item name="native_ads_body_text_color">@android:color/black</item>
+
     </style>
 
     <style name="AppTranslucent" parent="android:Theme.NoTitleBar.Fullscreen">

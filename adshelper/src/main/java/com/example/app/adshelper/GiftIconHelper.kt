@@ -33,11 +33,14 @@ object GiftIconHelper {
         fivGiftIcon.gone
         fivBlastIcon.gone
 
+
         loadNewInterstitialAd(fContext, fivGiftIcon, fivBlastIcon)
 
         fivGiftIcon.setOnClickListener {
             fivGiftIcon.gone
             fivBlastIcon.visible
+
+            isInterstitialAdShow = true
 
             fivBlastIcon.addAnimatorListener(object : Animator.AnimatorListener {
                 override fun onAnimationRepeat(animation: Animator?) {
@@ -104,7 +107,7 @@ object GiftIconHelper {
 
     private val Activity.isNewInterstitialAdLoad: Boolean
         get() {
-            return if (isInterstitialAdLoaded && interstitial != null) {
+            return if (!isInterstitialAdShow && isInterstitialAdLoaded && interstitial != null) {
                 isInterstitialAdShow = true
                 isAnyAdOpen = true
                 interstitial?.show(this)

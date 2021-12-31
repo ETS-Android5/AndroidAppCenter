@@ -166,7 +166,6 @@ open class AppOpenApplication : MultiDexApplication(), DefaultLifecycleObserver 
                 isPause = false
             }
         }
-
     }
 
     override fun onDestroy(owner: LifecycleOwner) {

@@ -35,6 +35,8 @@ class TopsMoreAppsView : ConstraintLayout, CoroutineScope, View.OnClickListener 
 
     private var mTextGravity: TextGravity = TextGravity.CENTER
 
+    private var mTitleText: String = context.getStringRes(R.string.label_more_apps)
+
     private var mJob: Job = Job()
 
     override val coroutineContext: CoroutineContext
@@ -70,7 +72,9 @@ class TopsMoreAppsView : ConstraintLayout, CoroutineScope, View.OnClickListener 
         try {
             PKG_NAME =
                 styledData.getString(R.styleable.TopsMoreAppsView_app_package_name) ?: PKG_NAME
-            Log.e(TAG, "initMainView: PKG_NAME::$PKG_NAME")
+
+            mTitleText =
+                styledData.getString(R.styleable.TopsMoreAppsView_title_text) ?: mTitleText
 
             themeColor = styledData.getColor(
                 R.styleable.TopsMoreAppsView_theme_color,
@@ -89,6 +93,9 @@ class TopsMoreAppsView : ConstraintLayout, CoroutineScope, View.OnClickListener 
         invalidate()
 
         with(mBinding) {
+
+            tvMoreApps.text = mTitleText
+
             maRvMoreApps.addItemDecoration(
                 GridSpacingItemDecoration(
                     4,

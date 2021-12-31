@@ -149,6 +149,7 @@
     <declare-styleable name="TopsMoreAppsView">
         <attr name="theme_color" format="color|reference"/>
         <attr name="app_package_name" format="string"/>
+        <attr name="title_text" format="string"/>
 
         <attr name="text_gravity" format="enum">
             <enum name="CENTER" value="0"/>

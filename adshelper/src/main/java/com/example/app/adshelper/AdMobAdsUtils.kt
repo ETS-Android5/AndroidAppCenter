@@ -18,7 +18,7 @@ import com.google.android.gms.ads.RequestConfiguration
 var isNeedToShowAds = true
 var isAppForeground = false
 
-internal var isInterstitialAdShow = false
+var isInterstitialAdShow = false
 internal var isAnyAdOpen = false
 
 internal var admob_app_id: String? = null

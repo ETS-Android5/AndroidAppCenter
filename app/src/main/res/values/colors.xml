@@ -3,4 +3,9 @@
     <color name="colorPrimary">#4EAF4F</color>
     <color name="colorPrimaryDark">#4EAF4F</color>
     <color name="colorAccent">#4EAF4F</color>
+
+    <color name="testing_color">@android:color/holo_red_light</color>
+
+    <color name="yes_btn">#EC2F2F</color>
+    <color name="no_btn">#53EC2F</color>
 </resources>

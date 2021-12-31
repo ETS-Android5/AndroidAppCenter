@@ -117,7 +117,7 @@ object OpenAdHelper {
     private fun wasLoadTimeLessThanNHoursAgo(): Boolean {
         val dateDifference: Long = Date().time - adLoadTime
         val numMilliSecondsPerHour: Long = 3600000
-        return dateDifference < numMilliSecondsPerHour * 4
+        return dateDifference < numMilliSecondsPerHour
     }
 
     fun isAdAvailable(): Boolean {

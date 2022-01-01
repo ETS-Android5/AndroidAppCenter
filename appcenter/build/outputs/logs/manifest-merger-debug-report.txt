@@ -1,0 +1,39 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:2:1-14:12
+INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:2:1-14:12
+INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:2:1-14:12
+	package
+		ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:3:5-51
+		INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+		INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:5:22-64
+application
+ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:7:5-12:19
+activity#com.example.latest.vasu.newappcenter.MoreAppsActivity
+ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:8:9-11:52
+	android:screenOrientation
+		ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:11:13-49
+	android:exported
+		ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:10:13-36
+	android:name
+		ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:9:13-81
+uses-sdk
+INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+		ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+		INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+		ADDED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+		INJECTED from /Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml

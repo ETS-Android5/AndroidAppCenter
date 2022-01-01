@@ -1,0 +1,18 @@
+com/vasu/appcenter/databinding/ActivityNativeAdsBinding.java
+ com.vasu.appcenter.databinding.ActivityNativeAdsBinding
+com/vasu/appcenter/databinding/ViewGiftAdBinding.java
+ com.vasu.appcenter.databinding.ViewGiftAdBinding
+com/vasu/appcenter/databinding/DialogExitBinding.java
+ com.vasu.appcenter.databinding.DialogExitBinding
+com/vasu/appcenter/databinding/ActivitySecondBinding.java
+ com.vasu.appcenter.databinding.ActivitySecondBinding
+com/vasu/appcenter/databinding/AllScreenHeaderBinding.java
+ com.vasu.appcenter.databinding.AllScreenHeaderBinding
+com/vasu/appcenter/databinding/ActivitySplashBinding.java
+ com.vasu.appcenter.databinding.ActivitySplashBinding
+com/vasu/appcenter/databinding/ActivityMainBinding.java
+ com.vasu.appcenter.databinding.ActivityMainBinding
+com/vasu/appcenter/BuildConfig.java
+ com.vasu.appcenter.BuildConfig
+com/vasu/appcenter/databinding/TestingBinding.java
+ com.vasu.appcenter.databinding.TestingBinding

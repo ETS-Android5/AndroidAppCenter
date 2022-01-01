@@ -42,8 +42,8 @@ dependencies {
 //    implementation "androidx.core:core-ktx:1.7.0"
 //    implementation 'androidx.appcompat:appcompat:1.4.0'
 
-    implementation "androidx.core:core-ktx:$core_ktx_version"
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.core:core-ktx:1.6.0"
+    implementation "androidx.appcompat:appcompat:1.3.1"
 
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
@@ -63,10 +63,10 @@ dependencies {
     implementation "org.jetbrains.anko:anko:0.10.8"
 
     // The Google SDK for Google Ads
-    implementation "com.google.android.gms:play-services-ads:$google_ads_version"
+    implementation "com.google.android.gms:play-services-ads:20.4.0"
 
     // Lottie Animation
-    implementation "com.airbnb.android:lottie:$lottie_version"
+    implementation "com.airbnb.android:lottie:3.7.0"
 
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
@@ -74,4 +74,7 @@ dependencies {
     //<editor-fold desc="Run-Time Permission">
     implementation 'com.github.AkshayHarsoda:AksPermission-Android:v1.1.0'
     //</editor-fold>
+
+//    implementation 'com.github.vickypathak123:AndroidAppCenter:1.1.0'
+//    implementation 'com.github.vickypathak123.AndroidAppCenter:adshelper:1.1.0'
 }

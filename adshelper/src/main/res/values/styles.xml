@@ -21,10 +21,10 @@
         <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
     </style>
 
-    <style name="WhiteAccent" parent="Widget.AppCompat.ProgressBar">
-        <item name="colorAccent">?attr/colorAccent</item> <!-- Whatever color you want-->
+<!--    <style name="WhiteAccent" parent="Widget.AppCompat.ProgressBar">-->
+<!--        <item name="colorAccent">?attr/colorAccent</item> &lt;!&ndash; Whatever color you want&ndash;&gt;-->
 <!--        <item name="android:progressTint">?attr/colorAccent</item>-->
-    </style>
+<!--    </style>-->
 
 
 </resources>

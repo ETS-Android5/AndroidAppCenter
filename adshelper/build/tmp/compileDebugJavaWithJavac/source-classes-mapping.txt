@@ -1,0 +1,14 @@
+com/example/app/adshelper/widgets/BlurDrawable.java
+ com.example.app.adshelper.widgets.BlurDrawable
+com/example/app/adshelper/databinding/LayoutGoogleNativeAdBigBinding.java
+ com.example.app.adshelper.databinding.LayoutGoogleNativeAdBigBinding
+com/example/app/adshelper/databinding/LayoutGoogleNativeAdExitFullScreenWebsiteBinding.java
+ com.example.app.adshelper.databinding.LayoutGoogleNativeAdExitFullScreenWebsiteBinding
+com/example/app/adshelper/BuildConfig.java
+ com.example.app.adshelper.BuildConfig
+com/example/app/adshelper/databinding/LayoutGoogleNativeAdMediumBinding.java
+ com.example.app.adshelper.databinding.LayoutGoogleNativeAdMediumBinding
+com/example/app/adshelper/databinding/DialogFullScreenNativeAdBinding.java
+ com.example.app.adshelper.databinding.DialogFullScreenNativeAdBinding
+com/example/app/adshelper/databinding/LayoutGoogleNativeAdExitFullScreenAppStoreBinding.java
+ com.example.app.adshelper.databinding.LayoutGoogleNativeAdExitFullScreenAppStoreBinding

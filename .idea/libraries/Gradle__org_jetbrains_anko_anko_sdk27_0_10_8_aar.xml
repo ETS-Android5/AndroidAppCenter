@@ -3,8 +3,9 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/e4510556fc9941950765ceb38cfba3b8/transformed/jetified-anko-sdk27-0.10.8/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0242f6b16aa8d43f01a1d29be18b7833/transformed/jetified-anko-sdk27-0.10.8/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/78b66a545bff4841d4c8ed779bcf4b3e/transformed/jetified-anko-sdk27-0.10.8/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/78b66a545bff4841d4c8ed779bcf4b3e/transformed/jetified-anko-sdk27-0.10.8/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4244d6b066fab73aa24538d548e52a86/transformed/jetified-anko-sdk27-0.10.8/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/78b66a545bff4841d4c8ed779bcf4b3e/transformed/jetified-anko-sdk27-0.10.8/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/78b66a545bff4841d4c8ed779bcf4b3e/transformed/jetified-anko-sdk27-0.10.8/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />

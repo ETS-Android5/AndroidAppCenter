@@ -10,10 +10,10 @@ import android.os.SystemClock
 import android.provider.Settings
 import android.util.Log
 import android.webkit.WebView
-import androidx.lifecycle.*
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
-import com.example.app.adshelper.*
+import com.example.app.adshelper.isAppForeground
+import com.example.app.adshelper.isOpenAdEnable
 import com.example.app.adshelper.dialogs.FullScreenNativeAdDialog
 import com.example.app.adshelper.isAnyAdOpen
 import com.example.app.adshelper.isInterstitialAdShow
@@ -22,10 +22,9 @@ import com.google.android.gms.ads.AdActivity
 import com.google.android.gms.ads.MobileAds
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import java.util.*
 import kotlin.collections.ArrayList
 
-open class AppOpenApplication : MultiDexApplication(), DefaultLifecycleObserver {
+open class AppOpenApplication : MultiDexApplication(), androidx.lifecycle.DefaultLifecycleObserver {
 
     private val TAG: String = "AppOpenApplication"
 
@@ -52,7 +51,7 @@ open class AppOpenApplication : MultiDexApplication(), DefaultLifecycleObserver 
     override fun onCreate() {
         super<MultiDexApplication>.onCreate()
         Log.e(TAG, "onCreate: ")
-        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
+        androidx.lifecycle.ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
         mOpenAdManager = OpenAdManager(this@AppOpenApplication)
 
@@ -119,7 +118,7 @@ open class AppOpenApplication : MultiDexApplication(), DefaultLifecycleObserver 
         return try {
             val androidId: String = Settings.Secure.getString(this.contentResolver, Settings.Secure.ANDROID_ID)
             val md5Data = customMD5(androidId)
-            val deviceId = md5Data?.uppercase(Locale.ENGLISH) ?: "null"
+            val deviceId = md5Data?.uppercase(java.util.Locale.ENGLISH) ?: "null"
             println("getDeviceId: $deviceId")
             deviceId
         } catch (e: Exception) {
@@ -142,20 +141,20 @@ open class AppOpenApplication : MultiDexApplication(), DefaultLifecycleObserver 
     }
 
     //<editor-fold desc="For Application Lifecycle">
-    override fun onPause(owner: LifecycleOwner) {
+    override fun onPause(owner: androidx.lifecycle.LifecycleOwner) {
         super.onPause(owner)
         Log.e(TAG, "onPause: ")
         mLastPauseTime = SystemClock.elapsedRealtime()
         isPause = true
     }
 
-    override fun onStart(owner: LifecycleOwner) {
+    override fun onStart(owner: androidx.lifecycle.LifecycleOwner) {
         super.onStart(owner)
         Log.e(TAG, "onStart: onAppForegrounded: ")
         isAppForeground = true
     }
 
-    override fun onStop(owner: LifecycleOwner) {
+    override fun onStop(owner: androidx.lifecycle.LifecycleOwner) {
         super.onStop(owner)
         Log.e(TAG, "onStop: onAppBackgrounded: ")
         isAppForeground = false
@@ -168,12 +167,12 @@ open class AppOpenApplication : MultiDexApplication(), DefaultLifecycleObserver 
         }
     }
 
-    override fun onDestroy(owner: LifecycleOwner) {
+    override fun onDestroy(owner: androidx.lifecycle.LifecycleOwner) {
         super.onDestroy(owner)
         Log.e(TAG, "onDestroy: ")
     }
 
-    override fun onResume(owner: LifecycleOwner) {
+    override fun onResume(owner: androidx.lifecycle.LifecycleOwner) {
         super.onResume(owner)
         Log.e(TAG, "onResume")
         if (isOpenAdEnable) {

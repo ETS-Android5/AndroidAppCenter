@@ -5,6 +5,7 @@ package com.example.app.adshelper
 import android.animation.Animator
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.NonNull
 import com.airbnb.lottie.LottieAnimationView
@@ -17,6 +18,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
  * GiftIconHelper.kt - Simple object which has load and handle your gift AD data
  */
 object GiftIconHelper {
+
+    private val TAG: String = javaClass.simpleName
 
     private var isInterstitialAdLoaded = false
     private var interstitial: InterstitialAd? = null
@@ -48,13 +51,25 @@ object GiftIconHelper {
                 }
 
                 override fun onAnimationEnd(animation: Animator?) {
-                    fContext.isNewInterstitialAdLoad
+                    Log.e(TAG, "onAnimationEnd: isNewInterstitialAdLoad::${fContext.isNewInterstitialAdLoad}")
+                    Log.e(TAG, "onAnimationEnd: isInterstitialAdLoaded::${isInterstitialAdLoaded}")
+                    Log.e(TAG, "onAnimationEnd: interstitial != null::${interstitial != null}")
+                    if (!fContext.isNewInterstitialAdLoad) {
+                        if (isInterstitialAdLoaded && interstitial != null) {
+                            Log.e(TAG, "onAnimationEnd: ")
+                            isInterstitialAdLoaded = false
+                            interstitial = null
+                            loadNewInterstitialAd(fContext, fivGiftIcon, fivBlastIcon)
+//                            fivGiftIcon.visible
+//                            fivBlastIcon.gone
+                        }
+                    }
                     fivGiftIcon.gone
                     fivBlastIcon.gone
                 }
 
                 override fun onAnimationCancel(animation: Animator?) {
-
+                    Log.e(TAG, "onAnimationCancel: ")
                 }
 
                 override fun onAnimationStart(animation: Animator?) {

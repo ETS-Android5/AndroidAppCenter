@@ -1,0 +1,27 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.latest.vasu.newappcenter" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="16"
+6-->/Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+7        android:targetSdkVersion="30" />
+7-->/Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml
+8
+9    <uses-permission android:name="android.permission.INTERNET" />
+9-->/Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:5:5-67
+9-->/Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:5:22-64
+10
+11    <application>
+11-->/Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:7:5-12:19
+12        <activity
+12-->/Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:8:9-11:52
+13            android:name="com.example.latest.vasu.newappcenter.MoreAppsActivity"
+13-->/Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:9:13-81
+14            android:exported="true"
+14-->/Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:10:13-36
+15            android:screenOrientation="portrait" />
+15-->/Volumes/Extra/AD/Drive E/Work Space/Common-Code/VasuAppCenter/appcenter/src/main/AndroidManifest.xml:11:13-49
+16    </application>
+17
+18</manifest>

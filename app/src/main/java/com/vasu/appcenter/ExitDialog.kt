@@ -70,7 +70,7 @@ class ExitDialog(private val mContext: Activity): Dialog(mContext) {
                 }
             )
 
-            isInterstitialAdShow = true
+//            isInterstitialAdShow = true
             show()
         }
     }
